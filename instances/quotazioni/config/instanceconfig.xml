@@ -4,6 +4,9 @@
 	<packages>
 		<gnrcore_sys pkgcode="gnrcore:sys"/>
 		<gnrcore_adm pkgcode="gnrcore:adm"/>
+		<gnrcore_email pkgcode="gnrcore:email"/>
+		<unlocode pkgcode="unlocode:unlocode"/>
+		<agz pkgcode="agz:agz"/>
 		<quotazioni/>
 	</packages>
 	<authentication pkg="gnrcore:sys">

@@ -579,7 +579,7 @@ $@paym_quot
 	&amp;#160;&lt;/div&gt;</main></compiled></data>
 <authtags _T="NN" dtype="T" name_long="!![en]Auth tags" print_width="20::L" as="t0_authtags"></authtags>
 <private _T="B" dtype="B" name_long="!![en]Private" print_width="11::L" as="t0_private">False</private>
-<quicklist _T="NN" dtype="B" name_long="!![en]Quicklist" print_width="13::L" as="t0_quicklist"></quicklist>
+<quicklist _T="NN" dtype="B" name_long="!![en]Quicklist" as="t0_quicklist"></quicklist>
 <flags _T="NN" dtype="T" name_long="!![en]Flags" print_width="20::L" as="t0_flags"></flags>
 <required_pkg _T="NN" name_long="!![en]Required pkg" dtype="T" print_width="20::L" as="t0_required_pkg"></required_pkg>
 <preview _T="NN" name_long="!![en][it]Preview" dtype="T" as="t0_preview"></preview></GenRoBag>

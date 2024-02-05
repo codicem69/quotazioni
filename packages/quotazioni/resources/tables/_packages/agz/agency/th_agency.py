@@ -34,7 +34,8 @@ class Form(BaseComponent):
 
     def th_form(self, form):
         bc = form.center.borderContainer()
-        self.DatiAgenzia(bc.borderContainer(region='top',datapath='.record',height='600px', splitter=True))
+        self.DatiAgenzia(bc.borderContainer(region='top',datapath='.record',height='450px', splitter=True))
+        self.agency_att(bc.contentPane(region='center',height='100%', splitter=True))
 
     def DatiAgenzia(self,bc):
         center = bc.roundedGroup(region='center', title='Agency details').div(margin='10px',margin_right='20px')
@@ -63,6 +64,10 @@ class Form(BaseComponent):
         right.img(src='^.agency_stamp', edit=True, crop_width='100px', crop_height='100px', border='2px dotted silver',margin_left='5px',
                         placeholder=True,upload_folder='*') #upload_folder='site:image', upload_filename='=.id', width='100px', height='100px')
 
+    def agency_att(self,pane):
+        #fb = bc.formbuilder(cols=1, border_spacing='4px',margin='4px',region='bottom', height='100%')
+        #fb.div('ciao')
+        pane.attachmentGrid(viewResource='View')  
 
     def th_options(self):
         return dict(dialog_height='400px', dialog_width='600px' )

@@ -9,11 +9,11 @@
 <content>&lt;div&gt;
 	Customer:&lt;/div&gt;
 &lt;div&gt;
-	&lt;strong&gt;$rag_sociale&lt;/strong&gt;&lt;/div&gt;
+	&lt;strong&gt;$rag_sociale &lt;/strong&gt;&lt;/div&gt;
 &lt;div&gt;
-	&lt;strong&gt;$address&lt;/strong&gt;&lt;/div&gt;
+	&lt;strong&gt;$address &lt;/strong&gt;&lt;/div&gt;
 &lt;div&gt;
-	&lt;strong&gt;$cap - $city&lt;/strong&gt;&lt;/div&gt;
+	&lt;strong&gt;$cap - $city &lt;/strong&gt;&lt;/div&gt;
 &lt;div&gt;
 	&lt;strong&gt;$email&lt;/strong&gt;&lt;/div&gt;
 </content>
@@ -73,11 +73,11 @@
 <compiled><main maintable="quotazioni.cliente" locale="it-IT" virtual_columns="" columns="$rag_sociale,$address,$cap,$city,$email" formats="{}::JS" masks="{}::JS" editcols="{}::JS" df_templates="{}::JS" dtypes='{"rag_sociale": "T", "address": "T", "cap": "T", "city": "T", "email": "T"}::JS'>&lt;div&gt;
 	Customer:&lt;/div&gt;
 &lt;div&gt;
-	&lt;strong&gt;$rag_sociale&lt;/strong&gt;&lt;/div&gt;
+	&lt;strong&gt;$rag_sociale &lt;/strong&gt;&lt;/div&gt;
 &lt;div&gt;
-	&lt;strong&gt;$address&lt;/strong&gt;&lt;/div&gt;
+	&lt;strong&gt;$address &lt;/strong&gt;&lt;/div&gt;
 &lt;div&gt;
-	&lt;strong&gt;$cap - $city&lt;/strong&gt;&lt;/div&gt;
+	&lt;strong&gt;$cap - $city &lt;/strong&gt;&lt;/div&gt;
 &lt;div&gt;
 	&lt;strong&gt;$email&lt;/strong&gt;&lt;/div&gt;
 </main></compiled></GenRoBag>

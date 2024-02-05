@@ -11,9 +11,15 @@ class Table(object):
         tbl.column('quot_n', name_short='!![en]Quot.no.')
         tbl.column('oggetto', name_short='!![en]Subject')
         tbl.column('cliente_id',size='22', group='_', name_long='!![en]Customer'
-                    ).relation('cliente.id', relation_name='cliente_quot', mode='foreignkey', onDelete='raise')       
+                    ).relation('cliente.id', relation_name='cliente_quot', mode='foreignkey', onDelete='raise')
         tbl.column('htmlbag_quot', dtype='X', name_long='!![en]Html quotation doc') 
         tbl.formulaColumn('full_quot',"""$data || coalesce(' - '|| $quot_n, '') || coalesce(' - '|| $oggetto,'')""" )
+        tbl.aliasColumn('cliente_br', '@cliente_id.cliente_br')
+        tbl.aliasColumn('cliente', '@cliente_id.full_cliente')
+        tbl.formulaColumn('servincl_int',"""CASE WHEN @servincl_quot.id IS NOT NULL THEN :testo ELSE '' END""", dtype='T', var_testo='La tariffa sopra esposta si intende comprensiva di:<br>')
+        tbl.formulaColumn('servexcl_int',"""CASE WHEN @serviexcl_quot.id IS NOT NULL THEN :testo ELSE '' END""", dtype='T', var_testo='ESCLUSIONI:<br>')
+        tbl.formulaColumn('spec_cond_int',"""CASE WHEN @specific_quot.id IS NOT NULL THEN :testo ELSE '' END""", dtype='T', var_testo='Condizioni specifiche:<br>')
+        tbl.formulaColumn('surcharges_int',"""CASE WHEN @surcharge_quot.id IS NOT NULL THEN :testo ELSE '' END""", dtype='T', var_testo='Eventuali maggiorazioni:<br>')
 
     def defaultValues(self):
         return dict(agency_id=self.db.currentEnv.get('current_agency_id'),data = self.db.workdate)

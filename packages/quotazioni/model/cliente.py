@@ -13,4 +13,7 @@ class Table(object):
         tbl.column('tel', name_short='Tel.')
         tbl.column('note', name_short='Note')
         tbl.formulaColumn('full_cliente',"""$rag_sociale || coalesce(' - '|| $address, '') || coalesce(' - '|| $cap,'') || coalesce(' - '|| $city,'')""" )
-        
+        tbl.formulaColumn('full_cliente_br',"""$rag_sociale || '<br>' || coalesce(' - '|| $address, '') || '<br>' || coalesce(' - '|| $cap,'') ||
+                          coalesce(' - '|| $city,'')""" )
+        tbl.formulaColumn('cliente_br',"""$rag_sociale || '\n' || coalesce($address, '') || '\n' || coalesce($cap,'') ||
+                          coalesce(' - '|| $city,'')""" )

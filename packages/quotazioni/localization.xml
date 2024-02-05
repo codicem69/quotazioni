@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<GenRoBag><menu path="menu.py" ext="py"><en_cliente base="Cliente"></en_cliente>
+<en_quotazione base="Quotazione"></en_quotazione>
+<en_description base="Description" en="Description" it="Descrizione"></en_description>
+<en_details base="Details" it="Dettagli"></en_details>
+<en_services_included base="Services included" it="Servizi inclusi"></en_services_included>
+<en_surcharges base="Surcharges" it="Maggiorazioni"></en_surcharges>
+<en_specific_conditions base="Specific conditions" it="Condizioni specifiche"></en_specific_conditions>
+<en_services_excluded base="Services excluded" it="Servizi esclusi"></en_services_excluded>
+<en_working_times_ base="Working times " it="Orari di lavoro"></en_working_times_>
+<en_note fr="Note" de="Note" en="Note" it="Note" base="Note"></en_note>
+<en_payment_conditions base="Payment conditions" it="Condizioni di pagamento"></en_payment_conditions>
+<en_quotation_received base="Quotation received" it="Quotazione ricevuta"></en_quotation_received></menu>
+<model><cliente path="model/cliente.py" ext="py"><en_customer base="Customer" it="Cliente"></en_customer>
+<en_customers base="Customers" it="Clienti"></en_customers>
+<en_company_name base="Company name"></en_company_name>
+<en_address base="Address" it="Indirizzo"></en_address>
+<en_cap base="CAP"></en_cap>
+<en_city_place base="City place"></en_city_place></cliente>
+<description path="model/description.py" ext="py"><en_description base="Description" en="Description" it="Descrizione"></en_description>
+<en_quotation_id base="Quotation id"></en_quotation_id>
+<en_first_description base="First description" it="Prima descrizione"></en_first_description>
+<en_amount base="Amount" it="Importo"></en_amount></description>
+<extracost path="model/extracost.py" ext="py"><en_extra_costs base="Extra costs" it="Costi extra"></en_extra_costs>
+<en_quotation_id base="Quotation id"></en_quotation_id>
+<en_description base="Description" en="Description" it="Descrizione"></en_description>
+<en_amount base="Amount" it="Importo"></en_amount></extracost>
+<maggiorazioni path="model/maggiorazioni.py" ext="py"><en_surcharges base="Surcharges" it="Maggiorazioni"></en_surcharges>
+<en_description base="Description" en="Description" it="Descrizione"></en_description></maggiorazioni>
+<note path="model/note.py" ext="py"><en_note fr="Note" de="Note" en="Note" it="Note" base="Note"></en_note>
+<en_quotation_id base="Quotation id"></en_quotation_id>
+<en_description base="Description" en="Description" it="Descrizione"></en_description>
+<en_amount base="Amount" it="Importo"></en_amount></note>
+<payment_cond path="model/payment_cond.py" ext="py"><en_payment_conditions base="Payment conditions" it="Condizioni di pagamento"></en_payment_conditions>
+<en_description base="Description" en="Description" it="Descrizione"></en_description></payment_cond>
+<paymentcond path="model/paymentcond.py" ext="py"><en_payment_conditions base="Payment conditions" it="Condizioni di pagamento"></en_payment_conditions>
+<en_quotation base="Quotation" it="Quotazione"></en_quotation></paymentcond>
+<quotazione path="model/quotazione.py" ext="py"><en_quotation base="Quotation" it="Quotazione"></en_quotation>
+<en_quotations_ _tag="en__quotations_" base="[Quotations]" it="Quotazione"></en_quotations_>
+<en_date fr="Date" de="Datum" en="Date" it="Data" base="Date"></en_date>
+<en_quot_no_ base="Quot.no."></en_quot_no_>
+<en_subject fr="Sujet" de="Gegenstand" en="Subject" it="Oggetto" base="Subject"></en_subject>
+<en_customer base="Customer" it="Cliente"></en_customer>
+<en_html_quotation_doc base="Html quotation doc"></en_html_quotation_doc></quotazione>
+<quotazione_ricevuta path="model/quotazione_ricevuta.py" ext="py"><en_quotation_received base="Quotation received" it="Quotazione ricevuta"></en_quotation_received>
+<en_quotations_received base="Quotations received" it="Quotazioni ricevute"></en_quotations_received>
+<en_quotation_id base="Quotation id"></en_quotation_id>
+<en_description base="Description" en="Description" it="Descrizione"></en_description></quotazione_ricevuta>
+<services path="model/services.py" ext="py"><en_services base="Services" it="Servizi"></en_services>
+<en_description base="Description" en="Description" it="Descrizione"></en_description></services>
+<services_excl path="model/services_excl.py" ext="py"><en_services_excluded base="Services excluded" it="Servizi esclusi"></en_services_excluded>
+<en_quotation base="Quotation" it="Quotazione"></en_quotation></services_excl>
+<services_incl path="model/services_incl.py" ext="py"><en_services_included base="Services included" it="Servizi inclusi"></en_services_included>
+<en_quotation base="Quotation" it="Quotazione"></en_quotation></services_incl>
+<specific_cond path="model/specific_cond.py" ext="py"><en_specific_conditions base="Specific conditions" it="Condizioni specifiche"></en_specific_conditions>
+<en_quotation base="Quotation" it="Quotazione"></en_quotation>
+<en_description base="Description" en="Description" it="Descrizione"></en_description></specific_cond>
+<surcharges path="model/surcharges.py" ext="py"><en_surcharges base="Surcharges" it="Maggiorazioni"></en_surcharges>
+<en_quotation base="Quotation" it="Quotazione"></en_quotation></surcharges>
+<times_work path="model/times_work.py" ext="py"><en_working_times base="Working times" it="Orari di lavoro"></en_working_times>
+<en_quotation base="Quotation" it="Quotazione"></en_quotation></times_work>
+<working_times path="model/working_times.py" ext="py"><en_working_times base="Working times" it="Orari di lavoro"></en_working_times>
+<en_description base="Description" en="Description" it="Descrizione"></en_description></working_times></model>
+<resources><tables><_packages><agz><agency><th_agency path="resources/tables/_packages/agz/agency/th_agency.py" ext="py"><en_insert_7_characters _tag="en__insert_7_characters" base=" insert 7 characters"></en_insert_7_characters>
+<en_bank_details base="Bank details" it="Dettagli Bancari"></en_bank_details>
+<en_agency_stamp base="Agency stamp" it="Timbro agenzia"></en_agency_stamp></th_agency></agency></agz></_packages>
+<quotazione><th_quotazione path="resources/tables/quotazione/th_quotazione.py" ext="py"><en_strong_quotation_received_strong_ _tag="en__strong_quotation_received_strong_" base="&lt;strong&gt;Quotation received&lt;/strong&gt;" it="Quotazione ricevuta"></en_strong_quotation_received_strong_>
+<en_quotation_received base="Quotation Received" it="Quotazione ricevuta"></en_quotation_received>
+<en_please_wait base="Please wait"></en_please_wait>
+<en_quotation base="Quotation" it="Quotazione"></en_quotation>
+<en_proforma base="Proforma"></en_proforma>
+<en_first_description base="First description" it="Prima descrizione"></en_first_description>
+<en_extra_details base="Extra details" it="Dettagli extra"></en_extra_details>
+<en_services_included base="Services included" it="Servizi inclusi"></en_services_included>
+<en_surcharges base="Surcharges" it="Maggiorazioni"></en_surcharges>
+<en_specific_conditions base="Specific conditions" it="Condizioni specifiche"></en_specific_conditions>
+<en_services_excluded base="Services excluded" it="Servizi esclusi"></en_services_excluded>
+<en_working_times base="Working times" it="Orari di lavoro"></en_working_times>
+<en_notes fr="Remarques" de="Aufzeichnungen" en="Notes" it="Note" base="Notes"></en_notes>
+<en_payment_conditions base="Payment conditions" it="Condizioni di pagamento"></en_payment_conditions>
+<en_attachments base="Attachments" de="Zubehör" en="Attachments" fr="Pièces jointes" it="Allegati"></en_attachments>
+<EN_edit_quotation base="Edit Quotation" it="Modifica quotazione"></EN_edit_quotation>
+<en_proforma_details base="Proforma details"></en_proforma_details>
+<en_quotation_datas base="Quotation datas" it="Dati quotazione"></en_quotation_datas>
+<en_print_quotation base="Print quotation"></en_print_quotation>
+<en_print_quotation_template base="Print quotation template"></en_print_quotation_template>
+<en_quotanion_doc_ base="Quotanion doc."></en_quotanion_doc_></th_quotazione></quotazione>
+<quotazione_ricevuta><th_quotazione_ricevuta path="resources/tables/quotazione_ricevuta/th_quotazione_ricevuta.py" ext="py"><en_quotation_received_description base="Quotation received description"></en_quotation_received_description>
+<en_attachments base="Attachments" de="Zubehör" en="Attachments" fr="Pièces jointes" it="Allegati"></en_attachments></th_quotazione_ricevuta></quotazione_ricevuta></tables></resources></GenRoBag>

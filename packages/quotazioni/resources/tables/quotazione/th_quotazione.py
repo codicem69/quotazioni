@@ -34,7 +34,7 @@ class Form(BaseComponent):
 
     def th_form(self, form):
         tc = form.center.tabContainer()
-        bc = tc.borderContainer(title='Quotation')
+        bc = tc.borderContainer(title='!![en]Quotation')
         bc_att = tc.borderContainer(title='!![en]<strong>Quotation received</strong>')
        # bc_att.borderContainer(region='center',height='auto', background = '#f2f0e8', splitter=True).contentPane(title='!![en]Quotation Received',pageName='quot_rec',height='100%').remote(self.quot_recLazyMode,_waitingMessage='!![en]Please wait')
         self.quotazioneRicevuta(bc_att.contentPane(title='!![en]Quotation received',pageName='quot_rec',height='100%'))

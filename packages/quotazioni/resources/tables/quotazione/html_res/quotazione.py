@@ -194,3 +194,19 @@ class Main(TableScriptToHtml):
         timbro=self.record['@agency_id.agency_stamp']
         #timbro=self.page.externalUrl(stamp)
         dati_layout.row().cell("""<img src="%s" width="100" height="100">::HTML""" %timbro,lbl='')
+
+   # def outputDocName(self, ext=''):
+   #     n = self.getData('record.quot_n') or self.getData('record.id')
+   #     return '%s.%s' % (n.replace('.','_').replace('/','_'),ext)
+
+    def outputDocName(self, ext=''):
+        if ext and not ext[0] == '.':
+          ext = '.%s' % ext
+        if self.getData('record.quot_n'):
+          
+          doc_name = 'Quotation_{quot}{ext}'.format(quot=self.getData('record.quot_n').replace("/", ""),
+                      ext=ext)
+        else:
+          doc_name = 'Quotation{ext}'.format(ext=ext)
+        #print(x)
+        return doc_name

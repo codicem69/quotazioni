@@ -121,7 +121,7 @@ class Form(BaseComponent):
         
         #fb.field('cliente_id' )
     def th_bottom_custom(self, bottom):
-        bar = bottom.slotBar('10,stampa_quotazione,5,stampa_quot_template,5,quotazione_doc,*,10')
+        bar = bottom.slotBar('10,stampa_quotazione,5,email_quotazione,5,stampa_quot_template,5,quotazione_doc,*,10')
         btn_quot_print=bar.stampa_quotazione.button('!![en]Print quotation',
                                                     action="""genro.publish("table_script_run",{table:"quotazioni.quotazione",
                                                                                res_type:'print',
@@ -129,6 +129,13 @@ class Form(BaseComponent):
                                                                                pkey: pkey})
                                                                                """,
                                                                                pkey='=#FORM.pkey')
+        bar.email_quotazione.button('!![en]Email quotation', iconClass='print',
+                                        action="""genro.publish("table_script_run",{table:"quotazioni.quotazione",
+                                                                                   res_type:'print',
+                                                                                   resource:'email_quotazione',
+                                                                                   pkey: pkey})""",
+                                                                                   pkey='=#FORM.pkey')
+
         btn_quot_print=bar.stampa_quot_template.button('!![en]Print quotation template')
         btn_quot = bar.quotazione_doc.button('!![en]Quotanion doc.')
         btn_quot_print.dataRpc('nome_temp', self.print_quotation,record='=#FORM.record',nome_template = 'quotazioni.quotazione:quotation',format_page='A4')

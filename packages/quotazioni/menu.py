@@ -22,8 +22,8 @@ class Menu(object):
             auto.thpage(u"!!Quotation received", table="quotazioni.quotazione_ricevuta")
             auto.lookups(u"Lookup tables", lookup_manager="quotazioni")
         else:
-
-            auto = root.branch(u"auto")
+            root.thpage(u"!![en]Messages", table="email.message", tags="")
+            auto = root.branch(u"Quotation")
             auto.thpage(u"!!Cliente", table="quotazioni.cliente")
             auto.thpage(u"!!Quotazione", table="quotazioni.quotazione")
             auto.lookups(u"Lookup tables", lookup_manager="quotazioni")

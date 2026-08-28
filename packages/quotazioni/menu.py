@@ -10,6 +10,7 @@ class Menu(object):
             quotation = root.branch(u"quotation")
             quotation.packageBranch('Amministrazione sistema',pkg='adm')
             quotation.packageBranch('System',pkg='sys')
+            quotation.packageBranch('Unlocode',pkg='unlocode')
             quotation.packageBranch('Email',pkg='email')
             quotation.packageBranch('Agencies',pkg='agz')
             quotation.thpage(u"!!Cliente", table="quotazioni.cliente")

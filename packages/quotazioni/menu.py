@@ -11,6 +11,7 @@ class Menu(object):
             quotation.packageBranch('Amministrazione sistema',pkg='adm')
             quotation.packageBranch('System',pkg='sys')
             quotation.packageBranch('Email',pkg='email')
+            quotation.packageBranch('Agencies',pkg='agz')
             quotation.thpage(u"!!Cliente", table="quotazioni.cliente")
             quotation.thpage(u"!!Quotazione", table="quotazioni.quotazione")
             quotation.thpage(u"!!Quotazione versione", table="quotazioni.quotazione_versione")

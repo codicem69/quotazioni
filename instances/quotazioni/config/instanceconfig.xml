@@ -15,5 +15,5 @@
 	<site>
 		<wsgi mainpackage="quotazioni"/>
 	</site>
-	<menu package="*"/>
+	<!--menu package="*"/>-->
 </GenRoBag>

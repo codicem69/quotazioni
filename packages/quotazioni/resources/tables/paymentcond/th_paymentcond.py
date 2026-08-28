@@ -9,7 +9,7 @@ class View(BaseComponent):
     def th_struct(self,struct):
         r = struct.view().rows()
         r.fieldcell('_row_count', counter=True, name='N.',width='3em')
-        r.fieldcell('quotazione_id', width='40em')
+        r.fieldcell('quotvers_id', width='40em')
         r.fieldcell('paymentcond_id', width='auto')
 
     def th_order(self):

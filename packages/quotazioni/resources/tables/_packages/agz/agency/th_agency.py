@@ -31,11 +31,12 @@ class View(BaseComponent):
         return dict(column='agency_name', op='contains', val='')
 
 class Form(BaseComponent):
-
+    #py_requires="gnrcomponents/attachmanager/attachmanager:AttachManager"
     def th_form(self, form):
         bc = form.center.borderContainer()
         self.DatiAgenzia(bc.borderContainer(region='top',datapath='.record',height='450px', splitter=True))
-        self.agency_att(bc.contentPane(region='center',height='100%', splitter=True))
+        self.datiLogo(bc.borderContainer(region='center',datapath='.record',height='700px',width='400px', splitter=True))
+        #self.agency_att(bc.contentPane(region='center',height='100%', splitter=True))
 
     def DatiAgenzia(self,bc):
         center = bc.roundedGroup(region='center', title='Agency details').div(margin='10px',margin_right='20px')
@@ -61,13 +62,17 @@ class Form(BaseComponent):
         fb.br()
         right = bc.roundedGroup(region='right',title='!![en]Agency stamp',width='200px')
 
-        right.img(src='^.agency_stamp', edit=True, crop_width='100px', crop_height='100px', border='2px dotted silver',margin_left='5px',
+        right.img(src='^.agency_stamp', edit=True, crop_width='150px', crop_height='150px', border='2px dotted silver',margin_left='5px',
                         placeholder=True,upload_folder='*') #upload_folder='site:image', upload_filename='=.id', width='100px', height='100px')
+    def datiLogo(self,bc):
+        rg = bc.contentPane(region='center').roundedGroup(region='center',title='!![en]Agency logo',width='auto')
 
+        rg.img(src='^.agency_logo', edit=True, crop_width='300px', crop_height='120px', border='2px dotted silver',margin_left='5px',
+                        placeholder=True,upload_folder='*')
     def agency_att(self,pane):
         #fb = bc.formbuilder(cols=1, border_spacing='4px',margin='4px',region='bottom', height='100%')
         #fb.div('ciao')
-        pane.attachmentGrid(viewResource='View')  
+        pane.attachmentGrid(viewResource='View')
 
     def th_options(self):
         return dict(dialog_height='400px', dialog_width='600px' )

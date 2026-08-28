@@ -4,7 +4,7 @@
 from gnr.web.gnrbaseclasses import BaseComponent
 from gnr.core.gnrdecorator import public_method
 
-class ViewFromQuotRecAtc(BaseComponent):
+class ViewFromCorrisponceAtc(BaseComponent):
 
     def th_struct(self,struct):
         r = struct.view().rows()

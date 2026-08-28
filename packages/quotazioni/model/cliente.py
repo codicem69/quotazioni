@@ -10,6 +10,7 @@ class Table(object):
         tbl.column('cap', name_short='!![en]CAP')
         tbl.column('city', name_short='!![en]City place')
         tbl.column('email', name_short='Email')
+        tbl.column('email_cc', name_short='Email cc')
         tbl.column('tel', name_short='Tel.')
         tbl.column('note', name_short='Note')
         tbl.formulaColumn('full_cliente',"""$rag_sociale || coalesce(' - '|| $address, '') || coalesce(' - '|| $cap,'') || coalesce(' - '|| $city,'')""" )

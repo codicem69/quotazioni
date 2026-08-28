@@ -13,6 +13,7 @@ class View(BaseComponent):
         r.fieldcell('cap',width='10em')
         r.fieldcell('city',width='10em')
         r.fieldcell('email',width='10em')
+        r.fieldcell('email_cc',width='10em')
         r.fieldcell('tel',width='10em')
         r.fieldcell('note',width='auto')
 
@@ -34,6 +35,7 @@ class Form(BaseComponent):
         fb.field('cap' )
         fb.field('city' )
         fb.field('email' )
+        fb.field('email_cc' )
         fb.field('tel' )
         fb.field('note', tag='simpleTextArea' , colspan=2, width='99%')
 

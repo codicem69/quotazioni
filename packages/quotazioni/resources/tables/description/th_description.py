@@ -9,8 +9,9 @@ class View(BaseComponent):
     def th_struct(self,struct):
         r = struct.view().rows()
         r.fieldcell('_row_count', counter=True, name='N.',width='3em')
-        r.fieldcell('quotazione_id',width='40em')
+        r.fieldcell('quotvers_id',width='40em')
         r.fieldcell('description', width='auto')
+        r.fieldcell('um')
         r.fieldcell('amount',width='20em')
 
     def th_order(self):
@@ -24,8 +25,9 @@ class ViewFromDescription(BaseComponent):
     def th_struct(self,struct):
         r = struct.view().rows()
         r.fieldcell('_row_count', counter=True, name='N.',width='3em')
-        r.fieldcell('quotazione_id')
+        r.fieldcell('quotvers_id')
         r.fieldcell('description',width='50em',edit=dict(editor=True,validate_len=':125'))
+        r.fieldcell('um',edit=True)
         r.fieldcell('amount',edit=True)
 
     def th_order(self):
@@ -39,7 +41,7 @@ class Form(BaseComponent):
     def th_form(self, form):
         pane = form.record
         fb = pane.formbuilder(cols=2, border_spacing='4px')
-        fb.field('quotazione_id' )
+        fb.field('quotvers_id' )
         fb.field('description' )
         fb.field('amount' )
 

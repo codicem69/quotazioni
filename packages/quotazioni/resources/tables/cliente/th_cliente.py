@@ -21,7 +21,7 @@ class View(BaseComponent):
         return 'rag_sociale'
 
     def th_query(self):
-        return dict(column='full_cliente', op='contains', val='')
+        return dict(column='rag_sociale', op='contains', val='')
 
 
 

@@ -23,6 +23,8 @@ class View(BaseComponent):
     def th_query(self):
         return dict(column='rag_sociale', op='contains', val='')
 
+    def th_options(self):
+            return dict(partitioned=True)
 
 
 class Form(BaseComponent):
@@ -41,6 +43,6 @@ class Form(BaseComponent):
 
 
     def th_options(self):
-        #return dict(dialog_height='400px', dialog_width='600px' )
-        return dict(dialog_windowRatio = 1 )
+        return dict(dialog_height='400px', dialog_width='600px' )
+        #return dict(dialog_windowRatio = 1 )
         

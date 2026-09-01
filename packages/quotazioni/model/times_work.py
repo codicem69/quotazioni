@@ -3,7 +3,7 @@
 class Table(object):
     def config_db(self,pkg):
         tbl=pkg.table('times_work', pkey='id', name_long='!![en]Working times', name_plural='!![en]Working times',caption_field='worktimes_id')
-        self.sysFields(tbl,counter='quotazione_id')
+        self.sysFields(tbl,counter='quotvers_id')
         tbl.column('quotvers_id',size='22', group='_', name_long='!![en]Quotation'
                     ).relation('quotazione_versione.id', relation_name='times_quot', mode='foreignkey', onDelete='cascade')
         tbl.column('worktimes_id',size='22', group='_', name_long='!![en]Working times'

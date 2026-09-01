@@ -6,7 +6,7 @@ from datetime import datetime
 class Table(object):
     def config_db(self,pkg):
         tbl=pkg.table('quotazione_versione', pkey='id', name_long='!![en]Quotation version', name_plural='!![en]Quotation versions',caption_field='quot_no')
-        self.sysFields(tbl,counter='quotazione_id')
+        self.sysFields(tbl,counter=True)
         
         tbl.column('quotazione_id',size='22', group='_', name_long='!![en]Quotation').relation('quotazione.id',
             relation_name='quot_vers', mode='foreignkey',onDelete='cascade')
@@ -58,9 +58,16 @@ class Table(object):
             return dict(data = self.db.workdate)
 
     def counter_version(self,record=None):
-            #01
-            return dict(format='$K/$NN',code='V', date_field='data', showOnLoad=True, date_tolerant=True, recycle=True)
+            #V/01
+            return dict(format='$K/$NN',code='V', date_field='data', showOnLoad=True, date_tolerant=True)
 
+    def onDuplicating(self,record):
+        record['version'] = None
+        record['data'] = self.db.workdate
+    
+    def randomValues(self):
+            return dict(data = dict(sorted=True))
+    
     @public_method
     def getHTMLDoc(self,quot_id=None,record_template=None,**kwargs):
        testo=TableTemplateToHtml(table=self,record_template=record_template).contentFromTemplate(record=quot_id)

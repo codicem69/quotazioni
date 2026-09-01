@@ -3,7 +3,7 @@
 class Table(object):
     def config_db(self,pkg):
         tbl=pkg.table('extracost', pkey='id', name_long='!![en]Extra costs', name_plural='!![en]Extra costs',caption_field='id')
-        self.sysFields(tbl, counter='quotazione_id')
+        self.sysFields(tbl, counter='quotvers_id')
 
         tbl.column('quotvers_id',size='22', group='_', name_long='!![en]Quotation id'
                     ).relation('quotazione_versione.id', relation_name='quotazione_extra', mode='foreignkey', onDelete='cascade')

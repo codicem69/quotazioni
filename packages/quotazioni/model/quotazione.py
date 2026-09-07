@@ -20,6 +20,7 @@ class Table(object):
         #tbl.column('body_in', name_long='!![en]Body first')
         #tbl.column('htmlbag_quot', dtype='X', name_long='!![en]Html quotation doc')
         tbl.formulaColumn('full_quot',"""$data || coalesce(' - '|| $quot_n, '') || coalesce(' - '|| $oggetto,'')""" )
+        
         #tbl.aliasColumn('cliente_br', '@cliente_id.cliente_br')
         #tbl.aliasColumn('cliente', '@cliente_id.full_cliente')
         #tbl.aliasColumn('agencystamp','@agency_id.agency_stamp',dtype='P')

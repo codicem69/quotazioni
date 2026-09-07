@@ -178,6 +178,28 @@ class Form(BaseComponent):
                               datasource='#FORM.record',printAction=True)
 
     @public_method
+    def th_onLoading(self, record, newrecord, loadingParameters, recInfo):
+        if newrecord:
+            record['data'] = self.db.workdate
+    
+            quotazione_id = record.get('quotazione_id')
+    
+            if quotazione_id:
+                last_version = self.db.table(
+                    'quotazioni.quotazione_versione'
+                ).readColumns(
+                    columns='max($numero_versione)',
+                    where='$quotazione_id=:quotazione_id',
+                    quotazione_id=quotazione_id
+                )
+    
+                numero = (last_version or 0) + 1
+    
+                record['numero_versione'] = numero
+                record['version'] = 'V/{:02d}'.format(numero)
+
+
+    @public_method
     def save_quotation_pdf(self,record, html=None, **kwargs):
         if not html:
             return

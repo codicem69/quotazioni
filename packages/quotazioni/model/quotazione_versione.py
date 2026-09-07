@@ -6,10 +6,11 @@ from datetime import datetime
 class Table(object):
     def config_db(self,pkg):
         tbl=pkg.table('quotazione_versione', pkey='id', name_long='!![en]Quotation version', name_plural='!![en]Quotation versions',caption_field='quot_no')
-        self.sysFields(tbl,counter=True)
+        self.sysFields(tbl,counter='quotazione_id')
         
         tbl.column('quotazione_id',size='22', group='_', name_long='!![en]Quotation').relation('quotazione.id',
             relation_name='quot_vers', mode='foreignkey',onDelete='cascade')
+        tbl.column('numero_versione', dtype='L', name_long='!![en]Version number',name_short='!![en]Version')
         tbl.column('version', name_long='!![en]Version')
         tbl.column('data', dtype='D', name_long='!![en]Date', name_short='!![en]Date')
         tbl.column('oggetto', name_short='!![en]Subject')
@@ -57,13 +58,33 @@ class Table(object):
     def defaultValues(self):
             return dict(data = self.db.workdate)
 
-    def counter_version(self,record=None):
-            #V/01
-            return dict(format='$K/$NN',code='V', date_field='data', showOnLoad=True, date_tolerant=True)
+    #def counter_version(self,record=None):
+    #        #V/01
+    #        return dict(format='$K/$NN',code='V', date_field='data', showOnLoad=True, date_tolerant=True,group_by='quotazione_id')
+    
 
-    def onDuplicating(self,record):
-        record['version'] = None
+    #def onDuplicating(self,record):
+    #    #record['version'] = None
+    #    #record['numero_versione'] = None
+    #    record['data'] = self.db.workdate
+    def onDuplicating(self, record):
+        quotazione_id = record['quotazione_id']
+
+        last_version = self.db.table(
+            'quotazioni.quotazione_versione'
+        ).readColumns(
+            columns='max($numero_versione)',
+            where='$quotazione_id=:quotazione_id',
+            quotazione_id=quotazione_id
+        ) or 0
+
+        numero = last_version + 1
+
+        record['numero_versione'] = numero
+        record['version'] = 'V/{:02d}'.format(numero)
         record['data'] = self.db.workdate
+        record['data_invio'] = None
+
     
     def randomValues(self):
             return dict(data = dict(sorted=True))

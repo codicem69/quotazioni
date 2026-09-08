@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <GenRoBag><_ins_ts _tag="__ins_ts" _T="DH" dtype="DH" name_long="!![en]Insert date" indexed="True::B" group="zzz" onInserting="setTSNow" _sysfield="True::B" as="t0___ins_ts">2026-08-31T13:01:08.537192+02:00</_ins_ts>
 <_del_ts _tag="__del_ts" _T="NN" dtype="DH" name_long="!![en]Logical delete date" indexed="True::B" group="zzz" _sysfield="True::B" as="t0___del_ts"></_del_ts>
-<_mod_ts _tag="__mod_ts" _T="DH" dtype="DH" name_long="!![en]Update date" indexed="True::B" group="zzz" onInserting="setTSNow" onUpdating="setTSNow" _sysfield="True::B" print_width="26::L" as="t0___mod_ts">2026-09-07T15:57:07.493654+02:00</_mod_ts>
+<_mod_ts _tag="__mod_ts" _T="DH" dtype="DH" name_long="!![en]Update date" indexed="True::B" group="zzz" onInserting="setTSNow" onUpdating="setTSNow" _sysfield="True::B" print_width="26::L" as="t0___mod_ts">2026-09-08T09:54:21.367409+02:00</_mod_ts>
 <_ins_user _tag="__ins_user" _T="NN" name_long="!![en]User Insert" group="zzz" onInserting="setCurrentUser" _sysfield="True::B" dtype="T" as="t0___ins_user"></_ins_user>
 <identifier size=":120" unique="True::B" indexed="True::B" sql_value="COALESCE(:tbl,:pkg,'')||:objtype||:code|| CASE WHEN :private THEN :userid ELSE '' END" dtype="A" as="t0_identifier">quotazioni.quotazione_versionetemplatequotation</identifier>
 <code size=":40" name_long="!![en]Code" indexed="True::B" dtype="A" print_width="30::L" as="t0_code">quotation</code>
@@ -11,12 +11,12 @@
 <userid size=":50" name_long="!![en]User ID" indexed="True::B" dtype="A" print_width="30::L" as="t0_userid">admin</userid>
 <description size=":50" name_long="!![en]Description" indexed="True::B" dtype="A" print_width="30::L" as="t0_description">Quotation</description>
 <notes _T="NN" dtype="T" name_long="!![en]Notes" as="t0_notes"></notes>
-<data dtype="X" name_long="!![en]Data" print_width="12::L" as="t0_data"><content>&lt;div&gt;
+<data dtype="X" name_long="!![en]Data" print_width="12::L" as="t0_data"><content>&lt;div class="page-content"&gt;
 	&lt;table class="company-header"&gt;
 		&lt;tbody&gt;
 			&lt;tr&gt;
 				&lt;td class="company-logo"&gt;
-					$agency_logo&amp;quot;&lt;/td&gt;
+					$agency_logo&lt;/td&gt;
 				&lt;td class="company-data"&gt;
 					&lt;div&gt;
 						&lt;strong&gt;$agency_name&lt;/strong&gt;&lt;/div&gt;
@@ -129,7 +129,7 @@
 		&lt;/tbody&gt;
 	&lt;/table&gt;
 &lt;/div&gt;
-&lt;div&gt;
+&lt;div class="page-content"&gt;
 	$acceptance&lt;/div&gt;</content>
 <metadata><author>admin</author>
 <version _T="NN"></version>
@@ -539,167 +539,311 @@
 <mask _T="NN" dtype="::NN"></mask></gsx34rvq0x></varsbag>
 <parameters _T="BAG"></parameters>
 <email><attached_reports _T="BAG"></attached_reports></email>
-<content_css>@page {
-margin: 5mm 15mm 5mm 15mm;
+<content_css>/* =========================================================
+   PAGINA
+   ========================================================= */
+
+@page {
+    size: A4 portrait;
+    margin: 0;
 }
 
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+html,
 body {
-margin: 0;
-padding: 0;
-font-family: Tahoma, Geneva, sans-serif;
-font-size: 10px;
-color: #000000;
+    margin: 0;
+    padding: 0;
+    width: 210mm;
+    min-width: 210mm;
+    max-width: 210mm;
+
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 10px;
+    color: #000000;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTENITORE DOCUMENTO
+   A4 = 210mm
+   10mm sinistra + 10mm destra
+   contenuto = 190mm
+   ========================================================= */
+
+.page-content {
+    width: 190mm;
+    max-width: 190mm;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-top: 6mm;
+    padding-bottom: 10mm;
+}
+
+
+/* =========================================================
+   HEADER AZIENDA
+   ========================================================= */
 
 .company-header {
-width: 100%;
-border-collapse: collapse;
-margin: 0 0 15px 0;
+    width: 190mm;
+    max-width: 190mm;
+
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    margin: 0 0 15px 0;
+    padding: 0;
 }
 
 .company-header td {
-padding: 0;
-vertical-align: top;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
 }
 
 .company-logo {
-width: 50%;
-text-align: left;
+    width: 50%;
+    text-align: left;
 }
 
 .company-logo img {
-max-width: 250px;
-max-height: 110px;
-width: auto;
-height: auto;
+    display: block;
+
+    max-width: 90mm;
+    max-height: 110px;
+
+    width: auto;
+    height: auto;
 }
 
 .company-data {
-width: 50%;
-text-align: right;
-font-size: 10px;
-line-height: 14px;
+    width: 50%;
+
+    text-align: right;
+
+    font-size: 10px;
+    line-height: 14px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
+
+/* =========================================================
+   DATI DOCUMENTO / CLIENTE
+   ========================================================= */
+
 .document-info {
-width: 100%;
-border-collapse: collapse;
-margin: 0 0 15px 0;
+    width: 190mm;
+    max-width: 190mm;
+
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    margin: 0 0 15px 0;
+    padding: 0;
 }
 
 .document-info td {
-padding: 0;
-vertical-align: top;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
 }
 
 .document-data {
-width: 50%;
-text-align: left;
-line-height: 14px;
+    width: 50%;
+    text-align: left;
+    line-height: 14px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .customer-data {
-width: 50%;
-text-align: left;
-line-height: 14px;
+    width: 50%;
+    text-align: left;
+    line-height: 14px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
+
+
+/* =========================================================
+   TITOLI
+   ========================================================= */
 
 .section-title {
-width: 100%;
-margin-top: 8px;
-margin-bottom: 5px;
-font-size: 10px;
-line-height: 13px;
+    width: 190mm;
+    max-width: 190mm;
+
+    margin-top: 8px;
+    margin-bottom: 5px;
+
+    font-size: 10px;
+    line-height: 13px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
+
+
+/* =========================================================
+   TESTO QUOTAZIONE
+   ========================================================= */
 
 .quotation-text {
-    width: 100%;
+    width: 190mm;
+    max-width: 190mm;
+
     margin-top: 8px;
     margin-bottom: 10px;
+
     font-size: 11px;
     line-height: 15px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
+
+/* =========================================================
+   TABELLE ARTICOLI
+   ========================================================= */
 
 .items-table {
-width: 100%;
-border-collapse: collapse;
-margin: 3px 0 5px 0;
-font-size: 10px;
-}
+    width: 190mm;
+    max-width: 190mm;
 
-.items-table td {
-padding: 2px 3px;
-vertical-align: top;
-line-height: 13px;
-}
-
-.description-column {
-width: 80%;
-text-align: left;
-}
-
-.amount-column {
-width: 20%;
-text-align: left;
-}
-
-.text-section {
-width: 100%;
-font-size: 10px;
-line-height: 13px;
-}
-
-.services-excluded {
-line-height: 12px;
-}
-
-.spacer {
-height: 1px;
-}
-
-.spacer-large {
-height: 20px;
-}
-
-.agency-footer {
-width: 100%;
-border-collapse: collapse;
-margin-top: 15px;
-}
-
-.agency-footer td {
-padding: 0;
-vertical-align: top;
-}
-
-.agency-footer-space {
-width: 50%;
-}
-
-.agency-footer-content {
-width: 50%;
-text-align: left;
-font-size: 10px;
-}
-
-.text-section {
-    width: 100%;
-    font-size: 11px;
-    line-height: 15px;
-}
-
-.items-table {
-    width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
+
     margin: 3px 0 5px 0;
+    padding: 0;
+
     font-size: 11px;
 }
 
 .items-table td {
     padding: 2px 3px;
+    margin: 0;
+
     vertical-align: top;
+
     line-height: 15px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.description-column {
+    width: 80%;
+    text-align: left;
+}
+
+.amount-column {
+    width: 20%;
+    text-align: right;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TESTI
+   ========================================================= */
+
+.text-section {
+    width: 190mm;
+    max-width: 190mm;
+
+    margin: 0;
+    padding: 0;
+
+    font-size: 11px;
+    line-height: 15px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.services-excluded {
+    line-height: 12px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.agency-footer {
+    width: 190mm;
+    max-width: 190mm;
+
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    margin-top: 15px;
+    padding: 0;
+}
+
+.agency-footer td {
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+}
+
+.agency-footer-space {
+    width: 50%;
+}
+
+.agency-footer-content {
+    width: 50%;
+
+    text-align: left;
+
+    font-size: 10px;
+    line-height: 14px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+
+/* =========================================================
+   IMMAGINI
+   ========================================================= */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* =========================================================
+   PAGINAZIONE
+   ========================================================= */
+
+table {
+    page-break-inside: auto;
+}
+
+tr {
+    page-break-inside: avoid;
+}
+
+.section-title {
+    page-break-after: avoid;
 }</content_css>
 <compiled><_description_quot _tag="@description_quot">&lt;tr&gt;
 				&lt;td class="description-column"&gt;
@@ -740,173 +884,318 @@ font-size: 10px;
 <_paym_quot _tag="@paym_quot">&lt;div class="text-section" row_datasource="@paym_quot"&gt;
 		&lt;strong&gt;Condizioni di pagamento:&lt;/strong&gt; $@paymentcond_id.description&lt;/div&gt;
 	</_paym_quot>
-<main maintable="quotazioni.quotazione_versione" locale="it" virtual_columns="acceptance,agent_sign,stamp,servincl_int,servexcl_int,spec_cond_int,surcharges_int" columns="$data,@quotazione_id.quot_n,$oggetto,@quotazione_id.@cliente_id.rag_sociale,@quotazione_id.@cliente_id.address,@quotazione_id.@cliente_id.cap,@quotazione_id.@cliente_id.city,@quotazione_id.@agency_id.agency_stamp,$acceptance,$agent_sign,$stamp,@quotazione_id.@agency_id.agency_name,@quotazione_id.@agency_id.cf,@quotazione_id.@agency_id.vat,@quotazione_id.@agency_id.web,@quotazione_id.@agency_id.email,@quotazione_id.@agency_id.fax,@quotazione_id.@agency_id.tel,@quotazione_id.@agency_id.agency_logo,@quotazione_id.@agency_id.address,$body_in,@description_quot.description,@description_quot.um,@description_quot.amount,@quotazione_extra.extra_description,@quotazione_extra.extra_um,@quotazione_extra.extra_amount,@paym_quot.@paymentcond_id.description,@servincl_quot.@servicesincl_id.description,$servincl_int,$servexcl_int,@serviexcl_quot.@servicesexcl_id.description,@times_quot.@worktimes_id.description,$spec_cond_int,@specific_quot.description,@note_quot.description,@note_quot.um,@note_quot.amount,$surcharges_int,@surcharge_quot.@surcharges_id.description" formats='{"agency_timbro_agenzia": "auto", "agency_stamp": "auto", "agency_logo": "auto"}::JS' masks="{}::JS" editcols="{}::JS" df_templates="{}::JS" dtypes='{"data": "D", "quot_n": "T", "oggetto": "T", "customer_rag_sociale": "T", "customer_address": "T", "customer_cap": "T", "customer_city": "T", "agency_timbro_agenzia": "P", "acceptance": "T", "agent_sign": "A", "agency_stamp": "P", "agency_name": "T", "agency_cf": "T", "agency_vat": "A", "agency_web": "T", "agency_email": "T", "agency_fax": "T", "agency_tel": "T", "agency_logo": "P", "agency_address": "T", "body_first": "T", "descrizione_description": "T", "descrizione_um": "T", "descrizione_amount": "T", "extra_description": "T", "extra_um": "T", "extra_amount": "T", "payment_conditions_description": "T", "services_included_description": "T", "servincl_int": "T", "servexcl_int": "T", "services_excluded_description": "T", "working_times_description": "T", "spec_cond_int": "T", "specific_conditions_description": "T", "note_description": "T", "note_um": "T", "note_amount": "T", "surcharges_int": "T", "surcharges_description": "T"}::JS'>&lt;style&gt;@page {
-margin: 5mm 15mm 5mm 15mm;
+<main maintable="quotazioni.quotazione_versione" locale="it" virtual_columns="acceptance,agent_sign,stamp,servincl_int,servexcl_int,spec_cond_int,surcharges_int" columns="$data,@quotazione_id.quot_n,$oggetto,@quotazione_id.@cliente_id.rag_sociale,@quotazione_id.@cliente_id.address,@quotazione_id.@cliente_id.cap,@quotazione_id.@cliente_id.city,@quotazione_id.@agency_id.agency_stamp,$acceptance,$agent_sign,$stamp,@quotazione_id.@agency_id.agency_name,@quotazione_id.@agency_id.cf,@quotazione_id.@agency_id.vat,@quotazione_id.@agency_id.web,@quotazione_id.@agency_id.email,@quotazione_id.@agency_id.fax,@quotazione_id.@agency_id.tel,@quotazione_id.@agency_id.agency_logo,@quotazione_id.@agency_id.address,$body_in,@description_quot.description,@description_quot.um,@description_quot.amount,@quotazione_extra.extra_description,@quotazione_extra.extra_um,@quotazione_extra.extra_amount,@paym_quot.@paymentcond_id.description,@servincl_quot.@servicesincl_id.description,$servincl_int,$servexcl_int,@serviexcl_quot.@servicesexcl_id.description,@times_quot.@worktimes_id.description,$spec_cond_int,@specific_quot.description,@note_quot.description,@note_quot.um,@note_quot.amount,$surcharges_int,@surcharge_quot.@surcharges_id.description" formats='{"agency_timbro_agenzia": "auto", "agency_stamp": "auto", "agency_logo": "auto"}::JS' masks="{}::JS" editcols="{}::JS" df_templates="{}::JS" dtypes='{"data": "D", "quot_n": "T", "oggetto": "T", "customer_rag_sociale": "T", "customer_address": "T", "customer_cap": "T", "customer_city": "T", "agency_timbro_agenzia": "P", "acceptance": "T", "agent_sign": "A", "agency_stamp": "P", "agency_name": "T", "agency_cf": "T", "agency_vat": "A", "agency_web": "T", "agency_email": "T", "agency_fax": "T", "agency_tel": "T", "agency_logo": "P", "agency_address": "T", "body_first": "T", "descrizione_description": "T", "descrizione_um": "T", "descrizione_amount": "T", "extra_description": "T", "extra_um": "T", "extra_amount": "T", "payment_conditions_description": "T", "services_included_description": "T", "servincl_int": "T", "servexcl_int": "T", "services_excluded_description": "T", "working_times_description": "T", "spec_cond_int": "T", "specific_conditions_description": "T", "note_description": "T", "note_um": "T", "note_amount": "T", "surcharges_int": "T", "surcharges_description": "T"}::JS'>&lt;style&gt;/* =========================================================
+   PAGINA
+   ========================================================= */
+
+@page {
+    size: A4 portrait;
+    margin: 0;
 }
 
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+html,
 body {
-margin: 0;
-padding: 0;
-font-family: Tahoma, Geneva, sans-serif;
-font-size: 10px;
-color: #000000;
+    margin: 0;
+    padding: 0;
+    width: 210mm;
+    min-width: 210mm;
+    max-width: 210mm;
+
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 10px;
+    color: #000000;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTENITORE DOCUMENTO
+   A4 = 210mm
+   10mm sinistra + 10mm destra
+   contenuto = 190mm
+   ========================================================= */
+
+.page-content {
+    width: 190mm;
+    max-width: 190mm;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-top: 6mm;
+    padding-bottom: 10mm;
+}
+
+
+/* =========================================================
+   HEADER AZIENDA
+   ========================================================= */
 
 .company-header {
-width: 100%;
-border-collapse: collapse;
-margin: 0 0 15px 0;
+    width: 190mm;
+    max-width: 190mm;
+
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    margin: 0 0 15px 0;
+    padding: 0;
 }
 
 .company-header td {
-padding: 0;
-vertical-align: top;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
 }
 
 .company-logo {
-width: 50%;
-text-align: left;
+    width: 50%;
+    text-align: left;
 }
 
 .company-logo img {
-max-width: 250px;
-max-height: 110px;
-width: auto;
-height: auto;
+    display: block;
+
+    max-width: 90mm;
+    max-height: 110px;
+
+    width: auto;
+    height: auto;
 }
 
 .company-data {
-width: 50%;
-text-align: right;
-font-size: 10px;
-line-height: 14px;
+    width: 50%;
+
+    text-align: right;
+
+    font-size: 10px;
+    line-height: 14px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
+
+/* =========================================================
+   DATI DOCUMENTO / CLIENTE
+   ========================================================= */
+
 .document-info {
-width: 100%;
-border-collapse: collapse;
-margin: 0 0 15px 0;
+    width: 190mm;
+    max-width: 190mm;
+
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    margin: 0 0 15px 0;
+    padding: 0;
 }
 
 .document-info td {
-padding: 0;
-vertical-align: top;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
 }
 
 .document-data {
-width: 50%;
-text-align: left;
-line-height: 14px;
+    width: 50%;
+    text-align: left;
+    line-height: 14px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .customer-data {
-width: 50%;
-text-align: left;
-line-height: 14px;
+    width: 50%;
+    text-align: left;
+    line-height: 14px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
+
+
+/* =========================================================
+   TITOLI
+   ========================================================= */
 
 .section-title {
-width: 100%;
-margin-top: 8px;
-margin-bottom: 5px;
-font-size: 10px;
-line-height: 13px;
+    width: 190mm;
+    max-width: 190mm;
+
+    margin-top: 8px;
+    margin-bottom: 5px;
+
+    font-size: 10px;
+    line-height: 13px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
+
+
+/* =========================================================
+   TESTO QUOTAZIONE
+   ========================================================= */
 
 .quotation-text {
-    width: 100%;
+    width: 190mm;
+    max-width: 190mm;
+
     margin-top: 8px;
     margin-bottom: 10px;
+
     font-size: 11px;
     line-height: 15px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
+
+/* =========================================================
+   TABELLE ARTICOLI
+   ========================================================= */
 
 .items-table {
-width: 100%;
-border-collapse: collapse;
-margin: 3px 0 5px 0;
-font-size: 10px;
-}
+    width: 190mm;
+    max-width: 190mm;
 
-.items-table td {
-padding: 2px 3px;
-vertical-align: top;
-line-height: 13px;
-}
-
-.description-column {
-width: 80%;
-text-align: left;
-}
-
-.amount-column {
-width: 20%;
-text-align: left;
-}
-
-.text-section {
-width: 100%;
-font-size: 10px;
-line-height: 13px;
-}
-
-.services-excluded {
-line-height: 12px;
-}
-
-.spacer {
-height: 1px;
-}
-
-.spacer-large {
-height: 20px;
-}
-
-.agency-footer {
-width: 100%;
-border-collapse: collapse;
-margin-top: 15px;
-}
-
-.agency-footer td {
-padding: 0;
-vertical-align: top;
-}
-
-.agency-footer-space {
-width: 50%;
-}
-
-.agency-footer-content {
-width: 50%;
-text-align: left;
-font-size: 10px;
-}
-
-.text-section {
-    width: 100%;
-    font-size: 11px;
-    line-height: 15px;
-}
-
-.items-table {
-    width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
+
     margin: 3px 0 5px 0;
+    padding: 0;
+
     font-size: 11px;
 }
 
 .items-table td {
     padding: 2px 3px;
+    margin: 0;
+
     vertical-align: top;
+
     line-height: 15px;
-}&lt;/style&gt;&lt;div&gt;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.description-column {
+    width: 80%;
+    text-align: left;
+}
+
+.amount-column {
+    width: 20%;
+    text-align: right;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TESTI
+   ========================================================= */
+
+.text-section {
+    width: 190mm;
+    max-width: 190mm;
+
+    margin: 0;
+    padding: 0;
+
+    font-size: 11px;
+    line-height: 15px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.services-excluded {
+    line-height: 12px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.agency-footer {
+    width: 190mm;
+    max-width: 190mm;
+
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    margin-top: 15px;
+    padding: 0;
+}
+
+.agency-footer td {
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+}
+
+.agency-footer-space {
+    width: 50%;
+}
+
+.agency-footer-content {
+    width: 50%;
+
+    text-align: left;
+
+    font-size: 10px;
+    line-height: 14px;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+
+/* =========================================================
+   IMMAGINI
+   ========================================================= */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* =========================================================
+   PAGINAZIONE
+   ========================================================= */
+
+table {
+    page-break-inside: auto;
+}
+
+tr {
+    page-break-inside: avoid;
+}
+
+.section-title {
+    page-break-after: avoid;
+}
+&lt;/style&gt;&lt;div class="page-content"&gt;
 	&lt;table class="company-header"&gt;
 		&lt;tbody&gt;
 			&lt;tr&gt;
 				&lt;td class="company-logo"&gt;
-					$@quotazione_id.@agency_id.agency_logo^agency_logo"&lt;/td&gt;
+					$@quotazione_id.@agency_id.agency_logo^agency_logo&lt;/td&gt;
 				&lt;td class="company-data"&gt;
 					&lt;div&gt;
 						&lt;strong&gt;$@quotazione_id.@agency_id.agency_name&lt;/strong&gt;&lt;/div&gt;
@@ -1008,7 +1297,7 @@ $@paym_quot
 	&lt;/table&gt;
 &lt;/div&gt;
 
-&lt;div&gt;
+&lt;div class="page-content"&gt;
 	$acceptance&lt;/div&gt;</main></compiled></data>
 <authtags _T="NN" dtype="T" name_long="!![en]Auth tags" print_width="20::L" as="t0_authtags"></authtags>
 <private _T="B" dtype="B" name_long="!![en]Private" print_width="11::L" as="t0_private">False</private>

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <GenRoBag><_ins_ts _tag="__ins_ts" _T="DH" dtype="DH" name_long="!![en]Insert date" indexed="True::B" group="zzz" onInserting="setTSNow" _sysfield="True::B" as="t0___ins_ts">2026-08-31T13:01:08.537192+02:00</_ins_ts>
 <_del_ts _tag="__del_ts" _T="NN" dtype="DH" name_long="!![en]Logical delete date" indexed="True::B" group="zzz" _sysfield="True::B" as="t0___del_ts"></_del_ts>
-<_mod_ts _tag="__mod_ts" _T="DH" dtype="DH" name_long="!![en]Update date" indexed="True::B" group="zzz" onInserting="setTSNow" onUpdating="setTSNow" _sysfield="True::B" print_width="26::L" as="t0___mod_ts">2026-09-08T09:54:21.367409+02:00</_mod_ts>
+<_mod_ts _tag="__mod_ts" _T="DH" dtype="DH" name_long="!![en]Update date" indexed="True::B" group="zzz" onInserting="setTSNow" onUpdating="setTSNow" _sysfield="True::B" print_width="26::L" as="t0___mod_ts">2026-09-15T17:32:04.216100+02:00</_mod_ts>
 <_ins_user _tag="__ins_user" _T="NN" name_long="!![en]User Insert" group="zzz" onInserting="setCurrentUser" _sysfield="True::B" dtype="T" as="t0___ins_user"></_ins_user>
 <identifier size=":120" unique="True::B" indexed="True::B" sql_value="COALESCE(:tbl,:pkg,'')||:objtype||:code|| CASE WHEN :private THEN :userid ELSE '' END" dtype="A" as="t0_identifier">quotazioni.quotazione_versionetemplatequotation</identifier>
 <code size=":40" name_long="!![en]Code" indexed="True::B" dtype="A" print_width="30::L" as="t0_code">quotation</code>
@@ -11,126 +11,177 @@
 <userid size=":50" name_long="!![en]User ID" indexed="True::B" dtype="A" print_width="30::L" as="t0_userid">admin</userid>
 <description size=":50" name_long="!![en]Description" indexed="True::B" dtype="A" print_width="30::L" as="t0_description">Quotation</description>
 <notes _T="NN" dtype="T" name_long="!![en]Notes" as="t0_notes"></notes>
-<data dtype="X" name_long="!![en]Data" print_width="12::L" as="t0_data"><content>&lt;div class="page-content"&gt;
-	&lt;table class="company-header"&gt;
+<data dtype="X" name_long="!![en]Data" print_width="12::L" as="t0_data"><content>&lt;div&gt;
+	&lt;!-- =====================================================
+         INTESTAZIONE AGENZIA
+         ===================================================== --&gt;
+	&lt;table cellpadding="1" cellspacing="1" style="border-collapse:collapse;margin-left:20px;margin-top:15px;line-height:1;width:95%;"&gt;
 		&lt;tbody&gt;
 			&lt;tr&gt;
-				&lt;td class="company-logo"&gt;
+				&lt;td&gt;
 					$agency_logo&lt;/td&gt;
-				&lt;td class="company-data"&gt;
-					&lt;div&gt;
-						&lt;strong&gt;$agency_name&lt;/strong&gt;&lt;/div&gt;
-					&lt;div&gt;
-						$agency_address&lt;/div&gt;
-					&lt;div&gt;
-						${tel. $agency_tel}&lt;/div&gt;
-					&lt;div&gt;
-						${Fax $agency_fax}&lt;/div&gt;
-					&lt;div&gt;
-						$agency_email&lt;/div&gt;
-					&lt;div&gt;
-						$agency_web&lt;/div&gt;
-					&lt;div&gt;
-						${VAT $agency_vat}&lt;/div&gt;
-					&lt;div&gt;
-						${CF $agency_cf}&lt;/div&gt;
+				&lt;td&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$agency_name&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$agency_address&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;${tel. $agency_tel}&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;${Fax $agency_fax}&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$agency_email&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$agency_web&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;${VAT $agency_vat}&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;${CF $agency_cf}&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 				&lt;/td&gt;
-			&lt;/tr&gt;
-		&lt;/tbody&gt;
-	&lt;/table&gt;
-	&lt;table class="document-info"&gt;
-		&lt;tbody&gt;
-			&lt;tr&gt;
-				&lt;td class="document-data"&gt;
-					&lt;div&gt;
-						Data/Date: $data&lt;/div&gt;
-					&lt;div&gt;
-						Quotazione n./Quotation no. $quot_n&lt;/div&gt;
-				&lt;/td&gt;
-				&lt;td class="customer-data"&gt;
-					&lt;div&gt;
-						&lt;strong&gt;Spett / Messrs&lt;/strong&gt;&lt;/div&gt;
-					&lt;div&gt;
-						&lt;strong&gt;$customer_rag_sociale&lt;/strong&gt;&lt;/div&gt;
-					&lt;div&gt;
-						&lt;strong&gt;$customer_address&lt;/strong&gt;&lt;/div&gt;
-					&lt;div&gt;
-						&lt;strong&gt;$customer_cap $customer_city&lt;/strong&gt;&lt;/div&gt;
-				&lt;/td&gt;
-			&lt;/tr&gt;
-		&lt;/tbody&gt;
-	&lt;/table&gt;
-	&lt;div class="section-title"&gt;
-		&lt;strong&gt;Oggetto/Subject: $oggetto&lt;/strong&gt;&lt;/div&gt;
-	&lt;div class="quotation-text"&gt;
-		$body_first&lt;/div&gt;
-	&lt;table class="items-table" row_datasource="@description_quot"&gt;
-		&lt;tbody&gt;
-			&lt;tr&gt;
-				&lt;td class="description-column"&gt;
-					&lt;strong&gt;$descrizione_description&lt;/strong&gt;&lt;/td&gt;
-				&lt;td class="amount-column" style="text-align: right;"&gt;
-					&lt;strong&gt;$descrizione_um $descrizione_amount&lt;/strong&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-		&lt;/tbody&gt;
-	&lt;/table&gt;
-	&lt;table class="items-table" row_datasource="@quotazione_extra"&gt;
-		&lt;tbody&gt;
-			&lt;tr&gt;
-				&lt;td class="description-column"&gt;
-					$extra_description&lt;/td&gt;
-				&lt;td class="amount-column" style="text-align: right;"&gt;
-					$extra_um $extra_amount&lt;/td&gt;
-			&lt;/tr&gt;
-		&lt;/tbody&gt;
-	&lt;/table&gt;
-	&lt;div class="section-title"&gt;
-		&lt;strong&gt;$servincl_int&lt;/strong&gt;&lt;/div&gt;
-	&lt;div class="text-section" row_datasource="@servincl_quot"&gt;
-		$services_included_description&lt;/div&gt;
-	&lt;table class="items-table" row_datasource="@note_quot"&gt;
-		&lt;tbody&gt;
-			&lt;tr&gt;
-				&lt;td class="description-column"&gt;
-					$note_description&lt;/td&gt;
-				&lt;td class="amount-column" style="text-align: right;"&gt;
-					$note_um $note_amount&lt;/td&gt;
-			&lt;/tr&gt;
-		&lt;/tbody&gt;
-	&lt;/table&gt;
-	&lt;div class="section-title"&gt;
-		&lt;strong&gt;$spec_cond_int&lt;/strong&gt;&lt;/div&gt;
-	&lt;div class="text-section" row_datasource="@specific_quot"&gt;
-		$specific_conditions_description&lt;/div&gt;
-	&lt;div class="section-title"&gt;
-		&lt;strong&gt;$servexcl_int&lt;/strong&gt;&lt;/div&gt;
-	&lt;div class="text-section" row_datasource="@serviexcl_quot"&gt;
-		$services_excluded_description&lt;/div&gt;
-	&lt;div class="section-title"&gt;
-		&lt;strong&gt;$surcharges_int&lt;/strong&gt;&lt;/div&gt;
-	&lt;div class="text-section" row_datasource="@surcharge_quot"&gt;
-		$surcharges_description&lt;/div&gt;
-	&lt;div class="text-section" row_datasource="@times_quot"&gt;
-		$working_times_description&lt;/div&gt;
-	&lt;div class="text-section"&gt;
-		$note&lt;/div&gt;
-	&lt;div class="text-section" row_datasource="@paym_quot"&gt;
-		&lt;strong&gt;Condizioni di pagamento:&lt;/strong&gt; $payment_conditions_description&lt;/div&gt;
-	&lt;table class="agency-footer"&gt;
-		&lt;tbody&gt;
-			&lt;tr&gt;
-				&lt;td class="agency-footer-content"&gt;
-					$agent_sign&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
-				&lt;td class="agency-footer-content"&gt;
-					$agency_stamp&lt;/td&gt;
 			&lt;/tr&gt;
 		&lt;/tbody&gt;
 	&lt;/table&gt;
 &lt;/div&gt;
-&lt;div class="page-content"&gt;
-	$acceptance&lt;/div&gt;</content>
+&lt;div&gt;
+	&lt;!-- =====================================================
+         DATI DOCUMENTO / CLIENTE
+         ===================================================== --&gt;
+	&lt;table cellpadding="1" cellspacing="1" style="border-collapse:collapse;margin-left:20px;margin-top:15px;line-height:1;width:95%;"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					&lt;div&gt;
+						&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;Data/Date: $data&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div&gt;
+						&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;Quotazione n./Quotation no. $quot_n&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+				&lt;/td&gt;
+				&lt;td&gt;
+					&lt;div&gt;
+						&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;Spett / Messrs&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div&gt;
+						&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$customer_rag_sociale&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div&gt;
+						&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$customer_address&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div&gt;
+						&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$customer_cap $customer_city&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;/div&gt;  
+	&lt;!-- =====================================================
+         OGGETTO
+         ===================================================== --&gt;
+	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&amp;nbsp;&lt;/div&gt;
+	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;Oggetto/Subject: $oggetto&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;span style="font-size:11px;"&gt;&lt;!-- =====================================================
+         BODY FIRST
+         
+         IMPORTANTE:
+         Questo campo contiene HTML DINAMICO.
+         Può contenere testo, tabelle, immagini, div ecc.
+         ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;margin-top:5px;"&gt;
+		&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;span style="font-size:11px;"&gt;$body_first&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;table cellpadding="1" cellspacing="1" row_datasource="@description_quot" style="border-collapse:collapse;margin-left:20px;margin-top:0px;width:95%;line-height:1;"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$descrizione_description&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+				&lt;td&gt;
+					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$descrizione_um $descrizione_amount&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+	&lt;!-- =====================================================
+         EXTRA
+         ===================================================== --&gt;
+	&lt;table cellpadding="1" cellspacing="1" row_datasource="@quotazione_extra" style="border-collapse:collapse;margin-left:20px;margin-top:15px;width:95%;line-height:1;"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$extra_description&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+				&lt;td&gt;
+					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$extra_um $extra_amount&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+	&lt;!-- =====================================================
+         SERVIZI INCLUSI
+         ===================================================== --&gt;
+	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;margin-top:0px;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$servincl_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;div row_datasource="@servincl_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$services_included_description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;!-- =====================================================
+         NOTE
+         ===================================================== --&gt;
+	&lt;table cellpadding="1" cellspacing="1" row_datasource="@note_quot" style="border-collapse:collapse;margin-left:20px;margin-top:15px;width:95%;line-height:1;"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$note_description&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+				&lt;td&gt;
+					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$note_um $note_amount&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+	&lt;!-- =====================================================
+         CONDIZIONI SPECIFICHE
+         ===================================================== --&gt;
+	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$spec_cond_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;div row_datasource="@specific_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$specific_conditions_description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;!-- =====================================================
+         SERVIZI ESCLUSI
+         ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$servexcl_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;div row_datasource="@serviexcl_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$services_excluded_description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;!-- =====================================================
+         MAGGIORAZIONI
+         ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$surcharges_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;div row_datasource="@surcharge_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$surcharges_description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;!-- =====================================================
+         ORARI
+         ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
+	&lt;div row_datasource="@times_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$working_times_description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$note&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;div row_datasource="@paym_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;span style="font-size:11px;"&gt;&lt;strong&gt;Condizioni di pagamento:&lt;/strong&gt; $payment_conditions_description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;table cellpadding="1" cellspacing="1" style="border-collapse:collapse;margin-left:20px;margin-top:15px;width:95%;line-height:1;"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$agent_sign&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					$agency_stamp&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+
+&lt;div&gt;
+	&lt;span style="font-size:10px;"&gt;&lt;!-- =========================================================
+     ACCETTAZIONE
+     ========================================================= --&gt;&lt;/span&gt;
+	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$acceptance&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&amp;nbsp;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&amp;nbsp;&lt;/div&gt;</content>
 <metadata><author>admin</author>
 <version _T="NN"></version>
 <date _T="NN"></date>
@@ -539,766 +590,235 @@
 <mask _T="NN" dtype="::NN"></mask></gsx34rvq0x></varsbag>
 <parameters _T="BAG"></parameters>
 <email><attached_reports _T="BAG"></attached_reports></email>
-<content_css>/* =========================================================
-   PAGINA
-   ========================================================= */
-
-@page {
-    size: A4 portrait;
-    margin: 0;
-}
-
-
-/* =========================================================
-   RESET
-   ========================================================= */
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 210mm;
-    min-width: 210mm;
-    max-width: 210mm;
-
-    font-family: Tahoma, Geneva, sans-serif;
-    font-size: 10px;
-    color: #000000;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-
-/* =========================================================
-   CONTENITORE DOCUMENTO
-   A4 = 210mm
-   10mm sinistra + 10mm destra
-   contenuto = 190mm
-   ========================================================= */
-
-.page-content {
-    width: 190mm;
-    max-width: 190mm;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    padding-top: 6mm;
-    padding-bottom: 10mm;
-}
-
-
-/* =========================================================
-   HEADER AZIENDA
-   ========================================================= */
-
-.company-header {
-    width: 190mm;
-    max-width: 190mm;
-
-    table-layout: fixed;
-    border-collapse: collapse;
-
-    margin: 0 0 15px 0;
-    padding: 0;
-}
-
-.company-header td {
-    padding: 0;
-    margin: 0;
-    vertical-align: top;
-}
-
-.company-logo {
-    width: 50%;
-    text-align: left;
-}
-
-.company-logo img {
-    display: block;
-
-    max-width: 90mm;
-    max-height: 110px;
-
-    width: auto;
-    height: auto;
-}
-
-.company-data {
-    width: 50%;
-
-    text-align: right;
-
-    font-size: 10px;
-    line-height: 14px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-
-/* =========================================================
-   DATI DOCUMENTO / CLIENTE
-   ========================================================= */
-
-.document-info {
-    width: 190mm;
-    max-width: 190mm;
-
-    table-layout: fixed;
-    border-collapse: collapse;
-
-    margin: 0 0 15px 0;
-    padding: 0;
-}
-
-.document-info td {
-    padding: 0;
-    margin: 0;
-    vertical-align: top;
-}
-
-.document-data {
-    width: 50%;
-    text-align: left;
-    line-height: 14px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-.customer-data {
-    width: 50%;
-    text-align: left;
-    line-height: 14px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-
-/* =========================================================
-   TITOLI
-   ========================================================= */
-
-.section-title {
-    width: 190mm;
-    max-width: 190mm;
-
-    margin-top: 8px;
-    margin-bottom: 5px;
-
-    font-size: 10px;
-    line-height: 13px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-
-/* =========================================================
-   TESTO QUOTAZIONE
-   ========================================================= */
-
-.quotation-text {
-    width: 190mm;
-    max-width: 190mm;
-
-    margin-top: 8px;
-    margin-bottom: 10px;
-
-    font-size: 11px;
-    line-height: 15px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-
-/* =========================================================
-   TABELLE ARTICOLI
-   ========================================================= */
-
-.items-table {
-    width: 190mm;
-    max-width: 190mm;
-
-    table-layout: fixed;
-    border-collapse: collapse;
-
-    margin: 3px 0 5px 0;
-    padding: 0;
-
-    font-size: 11px;
-}
-
-.items-table td {
-    padding: 2px 3px;
-    margin: 0;
-
-    vertical-align: top;
-
-    line-height: 15px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-.description-column {
-    width: 80%;
-    text-align: left;
-}
-
-.amount-column {
-    width: 20%;
-    text-align: right;
-
-    white-space: nowrap;
-}
-
-
-/* =========================================================
-   TESTI
-   ========================================================= */
-
-.text-section {
-    width: 190mm;
-    max-width: 190mm;
-
-    margin: 0;
-    padding: 0;
-
-    font-size: 11px;
-    line-height: 15px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-.services-excluded {
-    line-height: 12px;
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-.agency-footer {
-    width: 190mm;
-    max-width: 190mm;
-
-    table-layout: fixed;
-    border-collapse: collapse;
-
-    margin-top: 15px;
-    padding: 0;
-}
-
-.agency-footer td {
-    padding: 0;
-    margin: 0;
-    vertical-align: top;
-}
-
-.agency-footer-space {
-    width: 50%;
-}
-
-.agency-footer-content {
-    width: 50%;
-
-    text-align: left;
-
-    font-size: 10px;
-    line-height: 14px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-
-/* =========================================================
-   IMMAGINI
-   ========================================================= */
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-
-/* =========================================================
-   PAGINAZIONE
-   ========================================================= */
-
-table {
-    page-break-inside: auto;
-}
-
-tr {
-    page-break-inside: avoid;
-}
-
-.section-title {
-    page-break-after: avoid;
-}</content_css>
+<content_css></content_css>
 <compiled><_description_quot _tag="@description_quot">&lt;tr&gt;
-				&lt;td class="description-column"&gt;
-					&lt;strong&gt;$description&lt;/strong&gt;&lt;/td&gt;
-				&lt;td class="amount-column" style="text-align: right;"&gt;
-					&lt;strong&gt;$um $amount&lt;/strong&gt;&lt;/td&gt;
+				&lt;td&gt;
+					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$description&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+				&lt;td&gt;
+					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$um $amount&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 		</_description_quot>
 <_quotazione_extra _tag="@quotazione_extra">&lt;tr&gt;
-				&lt;td class="description-column"&gt;
-					$extra_description&lt;/td&gt;
-				&lt;td class="amount-column" style="text-align: right;"&gt;
-					$extra_um $extra_amount&lt;/td&gt;
+				&lt;td&gt;
+					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$extra_description&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+				&lt;td&gt;
+					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$extra_um $extra_amount&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 		</_quotazione_extra>
-<_servincl_quot _tag="@servincl_quot">&lt;div class="text-section" row_datasource="@servincl_quot"&gt;
-		$@servicesincl_id.description&lt;/div&gt;
+<_servincl_quot _tag="@servincl_quot">&lt;div row_datasource="@servincl_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$@servicesincl_id.description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	</_servincl_quot>
 <_note_quot _tag="@note_quot">&lt;tr&gt;
-				&lt;td class="description-column"&gt;
-					$description&lt;/td&gt;
-				&lt;td class="amount-column" style="text-align: right;"&gt;
-					$um $amount&lt;/td&gt;
+				&lt;td&gt;
+					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$description&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+				&lt;td&gt;
+					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$um $amount&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 		</_note_quot>
-<_specific_quot _tag="@specific_quot">&lt;div class="text-section" row_datasource="@specific_quot"&gt;
-		$description&lt;/div&gt;
+<_specific_quot _tag="@specific_quot">&lt;div row_datasource="@specific_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	</_specific_quot>
-<_serviexcl_quot _tag="@serviexcl_quot">&lt;div class="text-section" row_datasource="@serviexcl_quot"&gt;
-		$@servicesexcl_id.description&lt;/div&gt;
+<_serviexcl_quot _tag="@serviexcl_quot">&lt;div row_datasource="@serviexcl_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$@servicesexcl_id.description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	</_serviexcl_quot>
-<_surcharge_quot _tag="@surcharge_quot">&lt;div class="text-section" row_datasource="@surcharge_quot"&gt;
-		$@surcharges_id.description&lt;/div&gt;
+<_surcharge_quot _tag="@surcharge_quot">&lt;div row_datasource="@surcharge_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$@surcharges_id.description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	</_surcharge_quot>
-<_times_quot _tag="@times_quot">&lt;div class="text-section" row_datasource="@times_quot"&gt;
-		$@worktimes_id.description&lt;/div&gt;
+<_times_quot _tag="@times_quot">&lt;div row_datasource="@times_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$@worktimes_id.description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	</_times_quot>
-<_paym_quot _tag="@paym_quot">&lt;div class="text-section" row_datasource="@paym_quot"&gt;
-		&lt;strong&gt;Condizioni di pagamento:&lt;/strong&gt; $@paymentcond_id.description&lt;/div&gt;
+<_paym_quot _tag="@paym_quot">&lt;div row_datasource="@paym_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;span style="font-size:11px;"&gt;&lt;strong&gt;Condizioni di pagamento:&lt;/strong&gt; $@paymentcond_id.description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	</_paym_quot>
-<main maintable="quotazioni.quotazione_versione" locale="it" virtual_columns="acceptance,agent_sign,stamp,servincl_int,servexcl_int,spec_cond_int,surcharges_int" columns="$data,@quotazione_id.quot_n,$oggetto,@quotazione_id.@cliente_id.rag_sociale,@quotazione_id.@cliente_id.address,@quotazione_id.@cliente_id.cap,@quotazione_id.@cliente_id.city,@quotazione_id.@agency_id.agency_stamp,$acceptance,$agent_sign,$stamp,@quotazione_id.@agency_id.agency_name,@quotazione_id.@agency_id.cf,@quotazione_id.@agency_id.vat,@quotazione_id.@agency_id.web,@quotazione_id.@agency_id.email,@quotazione_id.@agency_id.fax,@quotazione_id.@agency_id.tel,@quotazione_id.@agency_id.agency_logo,@quotazione_id.@agency_id.address,$body_in,@description_quot.description,@description_quot.um,@description_quot.amount,@quotazione_extra.extra_description,@quotazione_extra.extra_um,@quotazione_extra.extra_amount,@paym_quot.@paymentcond_id.description,@servincl_quot.@servicesincl_id.description,$servincl_int,$servexcl_int,@serviexcl_quot.@servicesexcl_id.description,@times_quot.@worktimes_id.description,$spec_cond_int,@specific_quot.description,@note_quot.description,@note_quot.um,@note_quot.amount,$surcharges_int,@surcharge_quot.@surcharges_id.description" formats='{"agency_timbro_agenzia": "auto", "agency_stamp": "auto", "agency_logo": "auto"}::JS' masks="{}::JS" editcols="{}::JS" df_templates="{}::JS" dtypes='{"data": "D", "quot_n": "T", "oggetto": "T", "customer_rag_sociale": "T", "customer_address": "T", "customer_cap": "T", "customer_city": "T", "agency_timbro_agenzia": "P", "acceptance": "T", "agent_sign": "A", "agency_stamp": "P", "agency_name": "T", "agency_cf": "T", "agency_vat": "A", "agency_web": "T", "agency_email": "T", "agency_fax": "T", "agency_tel": "T", "agency_logo": "P", "agency_address": "T", "body_first": "T", "descrizione_description": "T", "descrizione_um": "T", "descrizione_amount": "T", "extra_description": "T", "extra_um": "T", "extra_amount": "T", "payment_conditions_description": "T", "services_included_description": "T", "servincl_int": "T", "servexcl_int": "T", "services_excluded_description": "T", "working_times_description": "T", "spec_cond_int": "T", "specific_conditions_description": "T", "note_description": "T", "note_um": "T", "note_amount": "T", "surcharges_int": "T", "surcharges_description": "T"}::JS'>&lt;style&gt;/* =========================================================
-   PAGINA
-   ========================================================= */
-
-@page {
-    size: A4 portrait;
-    margin: 0;
-}
-
-
-/* =========================================================
-   RESET
-   ========================================================= */
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 210mm;
-    min-width: 210mm;
-    max-width: 210mm;
-
-    font-family: Tahoma, Geneva, sans-serif;
-    font-size: 10px;
-    color: #000000;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-
-/* =========================================================
-   CONTENITORE DOCUMENTO
-   A4 = 210mm
-   10mm sinistra + 10mm destra
-   contenuto = 190mm
-   ========================================================= */
-
-.page-content {
-    width: 190mm;
-    max-width: 190mm;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    padding-top: 6mm;
-    padding-bottom: 10mm;
-}
-
-
-/* =========================================================
-   HEADER AZIENDA
-   ========================================================= */
-
-.company-header {
-    width: 190mm;
-    max-width: 190mm;
-
-    table-layout: fixed;
-    border-collapse: collapse;
-
-    margin: 0 0 15px 0;
-    padding: 0;
-}
-
-.company-header td {
-    padding: 0;
-    margin: 0;
-    vertical-align: top;
-}
-
-.company-logo {
-    width: 50%;
-    text-align: left;
-}
-
-.company-logo img {
-    display: block;
-
-    max-width: 90mm;
-    max-height: 110px;
-
-    width: auto;
-    height: auto;
-}
-
-.company-data {
-    width: 50%;
-
-    text-align: right;
-
-    font-size: 10px;
-    line-height: 14px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-
-/* =========================================================
-   DATI DOCUMENTO / CLIENTE
-   ========================================================= */
-
-.document-info {
-    width: 190mm;
-    max-width: 190mm;
-
-    table-layout: fixed;
-    border-collapse: collapse;
-
-    margin: 0 0 15px 0;
-    padding: 0;
-}
-
-.document-info td {
-    padding: 0;
-    margin: 0;
-    vertical-align: top;
-}
-
-.document-data {
-    width: 50%;
-    text-align: left;
-    line-height: 14px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-.customer-data {
-    width: 50%;
-    text-align: left;
-    line-height: 14px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-
-/* =========================================================
-   TITOLI
-   ========================================================= */
-
-.section-title {
-    width: 190mm;
-    max-width: 190mm;
-
-    margin-top: 8px;
-    margin-bottom: 5px;
-
-    font-size: 10px;
-    line-height: 13px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-
-/* =========================================================
-   TESTO QUOTAZIONE
-   ========================================================= */
-
-.quotation-text {
-    width: 190mm;
-    max-width: 190mm;
-
-    margin-top: 8px;
-    margin-bottom: 10px;
-
-    font-size: 11px;
-    line-height: 15px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-
-/* =========================================================
-   TABELLE ARTICOLI
-   ========================================================= */
-
-.items-table {
-    width: 190mm;
-    max-width: 190mm;
-
-    table-layout: fixed;
-    border-collapse: collapse;
-
-    margin: 3px 0 5px 0;
-    padding: 0;
-
-    font-size: 11px;
-}
-
-.items-table td {
-    padding: 2px 3px;
-    margin: 0;
-
-    vertical-align: top;
-
-    line-height: 15px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-.description-column {
-    width: 80%;
-    text-align: left;
-}
-
-.amount-column {
-    width: 20%;
-    text-align: right;
-
-    white-space: nowrap;
-}
-
-
-/* =========================================================
-   TESTI
-   ========================================================= */
-
-.text-section {
-    width: 190mm;
-    max-width: 190mm;
-
-    margin: 0;
-    padding: 0;
-
-    font-size: 11px;
-    line-height: 15px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-.services-excluded {
-    line-height: 12px;
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-.agency-footer {
-    width: 190mm;
-    max-width: 190mm;
-
-    table-layout: fixed;
-    border-collapse: collapse;
-
-    margin-top: 15px;
-    padding: 0;
-}
-
-.agency-footer td {
-    padding: 0;
-    margin: 0;
-    vertical-align: top;
-}
-
-.agency-footer-space {
-    width: 50%;
-}
-
-.agency-footer-content {
-    width: 50%;
-
-    text-align: left;
-
-    font-size: 10px;
-    line-height: 14px;
-
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-
-/* =========================================================
-   IMMAGINI
-   ========================================================= */
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-
-/* =========================================================
-   PAGINAZIONE
-   ========================================================= */
-
-table {
-    page-break-inside: auto;
-}
-
-tr {
-    page-break-inside: avoid;
-}
-
-.section-title {
-    page-break-after: avoid;
-}
-&lt;/style&gt;&lt;div class="page-content"&gt;
-	&lt;table class="company-header"&gt;
+<main maintable="quotazioni.quotazione_versione" locale="it" virtual_columns="acceptance,agent_sign,stamp,servincl_int,servexcl_int,spec_cond_int,surcharges_int" columns="$data,@quotazione_id.quot_n,$oggetto,@quotazione_id.@cliente_id.rag_sociale,@quotazione_id.@cliente_id.address,@quotazione_id.@cliente_id.cap,@quotazione_id.@cliente_id.city,@quotazione_id.@agency_id.agency_stamp,$acceptance,$agent_sign,$stamp,@quotazione_id.@agency_id.agency_name,@quotazione_id.@agency_id.cf,@quotazione_id.@agency_id.vat,@quotazione_id.@agency_id.web,@quotazione_id.@agency_id.email,@quotazione_id.@agency_id.fax,@quotazione_id.@agency_id.tel,@quotazione_id.@agency_id.agency_logo,@quotazione_id.@agency_id.address,$body_in,@description_quot.description,@description_quot.um,@description_quot.amount,@quotazione_extra.extra_description,@quotazione_extra.extra_um,@quotazione_extra.extra_amount,@paym_quot.@paymentcond_id.description,@servincl_quot.@servicesincl_id.description,$servincl_int,$servexcl_int,@serviexcl_quot.@servicesexcl_id.description,@times_quot.@worktimes_id.description,$spec_cond_int,@specific_quot.description,@note_quot.description,@note_quot.um,@note_quot.amount,$surcharges_int,@surcharge_quot.@surcharges_id.description" formats='{"agency_timbro_agenzia": "auto", "agency_stamp": "auto", "agency_logo": "auto"}::JS' masks="{}::JS" editcols="{}::JS" df_templates="{}::JS" dtypes='{"data": "D", "quot_n": "T", "oggetto": "T", "customer_rag_sociale": "T", "customer_address": "T", "customer_cap": "T", "customer_city": "T", "agency_timbro_agenzia": "P", "acceptance": "T", "agent_sign": "A", "agency_stamp": "P", "agency_name": "T", "agency_cf": "T", "agency_vat": "A", "agency_web": "T", "agency_email": "T", "agency_fax": "T", "agency_tel": "T", "agency_logo": "P", "agency_address": "T", "body_first": "T", "descrizione_description": "T", "descrizione_um": "T", "descrizione_amount": "T", "extra_description": "T", "extra_um": "T", "extra_amount": "T", "payment_conditions_description": "T", "services_included_description": "T", "servincl_int": "T", "servexcl_int": "T", "services_excluded_description": "T", "working_times_description": "T", "spec_cond_int": "T", "specific_conditions_description": "T", "note_description": "T", "note_um": "T", "note_amount": "T", "surcharges_int": "T", "surcharges_description": "T"}::JS'>&lt;div&gt;
+	&lt;!-- =====================================================
+         INTESTAZIONE AGENZIA
+         ===================================================== --&gt;
+	&lt;table cellpadding="1" cellspacing="1" style="border-collapse:collapse;margin-left:20px;margin-top:15px;line-height:1;width:95%;"&gt;
 		&lt;tbody&gt;
 			&lt;tr&gt;
-				&lt;td class="company-logo"&gt;
+				&lt;td&gt;
 					$@quotazione_id.@agency_id.agency_logo^agency_logo&lt;/td&gt;
-				&lt;td class="company-data"&gt;
-					&lt;div&gt;
-						&lt;strong&gt;$@quotazione_id.@agency_id.agency_name&lt;/strong&gt;&lt;/div&gt;
-					&lt;div&gt;
-						$@quotazione_id.@agency_id.address&lt;/div&gt;
-					&lt;div&gt;
-						${tel. $@quotazione_id.@agency_id.tel}&lt;/div&gt;
-					&lt;div&gt;
-						${Fax $@quotazione_id.@agency_id.fax}&lt;/div&gt;
-					&lt;div&gt;
-						$@quotazione_id.@agency_id.email&lt;/div&gt;
-					&lt;div&gt;
-						$@quotazione_id.@agency_id.web&lt;/div&gt;
-					&lt;div&gt;
-						${VAT $@quotazione_id.@agency_id.vat}&lt;/div&gt;
-					&lt;div&gt;
-						${CF $@quotazione_id.@agency_id.cf}&lt;/div&gt;
+				&lt;td&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$@quotazione_id.@agency_id.agency_name&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$@quotazione_id.@agency_id.address&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;${tel. $@quotazione_id.@agency_id.tel}&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;${Fax $@quotazione_id.@agency_id.fax}&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$@quotazione_id.@agency_id.email&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$@quotazione_id.@agency_id.web&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;${VAT $@quotazione_id.@agency_id.vat}&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div style="text-align: right;"&gt;
+						&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;${CF $@quotazione_id.@agency_id.cf}&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 				&lt;/td&gt;
-			&lt;/tr&gt;
-		&lt;/tbody&gt;
-	&lt;/table&gt;
-	&lt;table class="document-info"&gt;
-		&lt;tbody&gt;
-			&lt;tr&gt;
-				&lt;td class="document-data"&gt;
-					&lt;div&gt;
-						Data/Date: $data&lt;/div&gt;
-					&lt;div&gt;
-						Quotazione n./Quotation no. $@quotazione_id.quot_n&lt;/div&gt;
-				&lt;/td&gt;
-				&lt;td class="customer-data"&gt;
-					&lt;div&gt;
-						&lt;strong&gt;Spett / Messrs&lt;/strong&gt;&lt;/div&gt;
-					&lt;div&gt;
-						&lt;strong&gt;$@quotazione_id.@cliente_id.rag_sociale&lt;/strong&gt;&lt;/div&gt;
-					&lt;div&gt;
-						&lt;strong&gt;$@quotazione_id.@cliente_id.address&lt;/strong&gt;&lt;/div&gt;
-					&lt;div&gt;
-						&lt;strong&gt;$@quotazione_id.@cliente_id.cap $@quotazione_id.@cliente_id.city&lt;/strong&gt;&lt;/div&gt;
-				&lt;/td&gt;
-			&lt;/tr&gt;
-		&lt;/tbody&gt;
-	&lt;/table&gt;
-	&lt;div class="section-title"&gt;
-		&lt;strong&gt;Oggetto/Subject: $oggetto&lt;/strong&gt;&lt;/div&gt;
-	&lt;div class="quotation-text"&gt;
-		$body_in&lt;/div&gt;
-	&lt;table class="items-table" row_datasource="@description_quot"&gt;
-		&lt;tbody&gt;
-			
-$@description_quot
-&lt;/tbody&gt;
-	&lt;/table&gt;
-	&lt;table class="items-table" row_datasource="@quotazione_extra"&gt;
-		&lt;tbody&gt;
-			
-$@quotazione_extra
-&lt;/tbody&gt;
-	&lt;/table&gt;
-	&lt;div class="section-title"&gt;
-		&lt;strong&gt;$servincl_int&lt;/strong&gt;&lt;/div&gt;
-	
-$@servincl_quot
-&lt;table class="items-table" row_datasource="@note_quot"&gt;
-		&lt;tbody&gt;
-			
-$@note_quot
-&lt;/tbody&gt;
-	&lt;/table&gt;
-	&lt;div class="section-title"&gt;
-		&lt;strong&gt;$spec_cond_int&lt;/strong&gt;&lt;/div&gt;
-	
-$@specific_quot
-&lt;div class="section-title"&gt;
-		&lt;strong&gt;$servexcl_int&lt;/strong&gt;&lt;/div&gt;
-	
-$@serviexcl_quot
-&lt;div class="section-title"&gt;
-		&lt;strong&gt;$surcharges_int&lt;/strong&gt;&lt;/div&gt;
-	
-$@surcharge_quot
-
-$@times_quot
-&lt;div class="text-section"&gt;
-		$note&lt;/div&gt;
-	
-$@paym_quot
-&lt;table class="agency-footer"&gt;
-		&lt;tbody&gt;
-			&lt;tr&gt;
-				&lt;td class="agency-footer-content"&gt;
-					$agent_sign&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
-				&lt;td class="agency-footer-content"&gt;
-					$stamp^agency_stamp&lt;/td&gt;
 			&lt;/tr&gt;
 		&lt;/tbody&gt;
 	&lt;/table&gt;
 &lt;/div&gt;
 
-&lt;div class="page-content"&gt;
-	$acceptance&lt;/div&gt;</main></compiled></data>
+&lt;div&gt;
+	&lt;!-- =====================================================
+         DATI DOCUMENTO / CLIENTE
+         ===================================================== --&gt;
+	&lt;table cellpadding="1" cellspacing="1" style="border-collapse:collapse;margin-left:20px;margin-top:15px;line-height:1;width:95%;"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					&lt;div&gt;
+						&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;Data/Date: $data&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div&gt;
+						&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;Quotazione n./Quotation no. $@quotazione_id.quot_n&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+				&lt;/td&gt;
+				&lt;td&gt;
+					&lt;div&gt;
+						&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;Spett / Messrs&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div&gt;
+						&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$@quotazione_id.@cliente_id.rag_sociale&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div&gt;
+						&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$@quotazione_id.@cliente_id.address&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+					&lt;div&gt;
+						&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$@quotazione_id.@cliente_id.cap $@quotazione_id.@cliente_id.city&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;/div&gt;  
+	
+&lt;!-- =====================================================
+         OGGETTO
+         ===================================================== --&gt;
+	
+&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&amp;#160;&lt;/div&gt;
+	
+&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;Oggetto/Subject: $oggetto&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	
+&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;span style="font-size:11px;"&gt;&lt;!-- =====================================================
+         BODY FIRST
+         
+         IMPORTANTE:
+         Questo campo contiene HTML DINAMICO.
+         Pu&amp;#242; contenere testo, tabelle, immagini, div ecc.
+         ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
+	
+&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;margin-top:5px;"&gt;
+		&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;span style="font-size:11px;"&gt;$body_in&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	
+&lt;table cellpadding="1" cellspacing="1" row_datasource="@description_quot" style="border-collapse:collapse;margin-left:20px;margin-top:0px;width:95%;line-height:1;"&gt;
+		&lt;tbody&gt;
+			
+$@description_quot
+&lt;/tbody&gt;
+	&lt;/table&gt;
+	
+&lt;!-- =====================================================
+         EXTRA
+         ===================================================== --&gt;
+	
+&lt;table cellpadding="1" cellspacing="1" row_datasource="@quotazione_extra" style="border-collapse:collapse;margin-left:20px;margin-top:15px;width:95%;line-height:1;"&gt;
+		&lt;tbody&gt;
+			
+$@quotazione_extra
+&lt;/tbody&gt;
+	&lt;/table&gt;
+	
+&lt;!-- =====================================================
+         SERVIZI INCLUSI
+         ===================================================== --&gt;
+	
+&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;margin-top:0px;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$servincl_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	
+
+$@servincl_quot
+
+&lt;!-- =====================================================
+         NOTE
+         ===================================================== --&gt;
+	
+&lt;table cellpadding="1" cellspacing="1" row_datasource="@note_quot" style="border-collapse:collapse;margin-left:20px;margin-top:15px;width:95%;line-height:1;"&gt;
+		&lt;tbody&gt;
+			
+$@note_quot
+&lt;/tbody&gt;
+	&lt;/table&gt;
+	
+&lt;!-- =====================================================
+         CONDIZIONI SPECIFICHE
+         ===================================================== --&gt;
+	
+&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$spec_cond_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	
+
+$@specific_quot
+
+&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;!-- =====================================================
+         SERVIZI ESCLUSI
+         ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
+	
+&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$servexcl_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	
+
+$@serviexcl_quot
+
+&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;!-- =====================================================
+         MAGGIORAZIONI
+         ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
+	
+&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$surcharges_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	
+
+$@surcharge_quot
+
+&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;!-- =====================================================
+         ORARI
+         ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
+	
+
+$@times_quot
+
+&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$note&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	
+
+$@paym_quot
+
+&lt;table cellpadding="1" cellspacing="1" style="border-collapse:collapse;margin-left:20px;margin-top:15px;width:95%;line-height:1;"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$agent_sign&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					$stamp^agency_stamp&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+
+
+&lt;div&gt;
+	&lt;span style="font-size:10px;"&gt;&lt;!-- =========================================================
+     ACCETTAZIONE
+     ========================================================= --&gt;&lt;/span&gt;
+	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$acceptance&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+		&amp;#160;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&amp;#160;&lt;/div&gt;</main></compiled></data>
 <authtags _T="NN" dtype="T" name_long="!![en]Auth tags" print_width="20::L" as="t0_authtags"></authtags>
 <private _T="B" dtype="B" name_long="!![en]Private" print_width="11::L" as="t0_private">False</private>
 <quicklist _T="NN" dtype="B" name_long="!![en]Quicklist" print_width="13::L" as="t0_quicklist"></quicklist>

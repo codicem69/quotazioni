@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <GenRoBag><_ins_ts _tag="__ins_ts" _T="DH" dtype="DH" name_long="!![en]Insert date" indexed="True::B" group="zzz" onInserting="setTSNow" _sysfield="True::B" as="t0___ins_ts">2026-08-31T13:01:08.537192+02:00</_ins_ts>
 <_del_ts _tag="__del_ts" _T="NN" dtype="DH" name_long="!![en]Logical delete date" indexed="True::B" group="zzz" _sysfield="True::B" as="t0___del_ts"></_del_ts>
-<_mod_ts _tag="__mod_ts" _T="DH" dtype="DH" name_long="!![en]Update date" indexed="True::B" group="zzz" onInserting="setTSNow" onUpdating="setTSNow" _sysfield="True::B" print_width="26::L" as="t0___mod_ts">2026-09-15T17:32:04.216100+02:00</_mod_ts>
+<_mod_ts _tag="__mod_ts" _T="DH" dtype="DH" name_long="!![en]Update date" indexed="True::B" group="zzz" onInserting="setTSNow" onUpdating="setTSNow" _sysfield="True::B" print_width="26::L" as="t0___mod_ts">2026-09-16T09:17:47.347729+02:00</_mod_ts>
 <_ins_user _tag="__ins_user" _T="NN" name_long="!![en]User Insert" group="zzz" onInserting="setCurrentUser" _sysfield="True::B" dtype="T" as="t0___ins_user"></_ins_user>
 <identifier size=":120" unique="True::B" indexed="True::B" sql_value="COALESCE(:tbl,:pkg,'')||:objtype||:code|| CASE WHEN :private THEN :userid ELSE '' END" dtype="A" as="t0_identifier">quotazioni.quotazione_versionetemplatequotation</identifier>
 <code size=":40" name_long="!![en]Code" indexed="True::B" dtype="A" print_width="30::L" as="t0_code">quotation</code>
@@ -15,7 +15,7 @@
 	&lt;!-- =====================================================
          INTESTAZIONE AGENZIA
          ===================================================== --&gt;
-	&lt;table cellpadding="1" cellspacing="1" style="border-collapse:collapse;margin-left:20px;margin-top:15px;line-height:1;width:95%;"&gt;
+	&lt;table cellpadding="1" cellspacing="1" class="table"&gt;
 		&lt;tbody&gt;
 			&lt;tr&gt;
 				&lt;td&gt;
@@ -46,7 +46,7 @@
 	&lt;!-- =====================================================
          DATI DOCUMENTO / CLIENTE
          ===================================================== --&gt;
-	&lt;table cellpadding="1" cellspacing="1" style="border-collapse:collapse;margin-left:20px;margin-top:15px;line-height:1;width:95%;"&gt;
+	&lt;table cellpadding="1" cellspacing="1" class="table"&gt;
 		&lt;tbody&gt;
 			&lt;tr&gt;
 				&lt;td&gt;
@@ -72,9 +72,9 @@
 	&lt;!-- =====================================================
          OGGETTO
          ===================================================== --&gt;
-	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div class="div"&gt;
 		&amp;nbsp;&lt;/div&gt;
-	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;Oggetto/Subject: $oggetto&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;span style="font-size:11px;"&gt;&lt;!-- =====================================================
          BODY FIRST
@@ -83,9 +83,9 @@
          Questo campo contiene HTML DINAMICO.
          Può contenere testo, tabelle, immagini, div ecc.
          ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
-	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;margin-top:5px;"&gt;
+	&lt;div class="div_top"&gt;
 		&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;span style="font-size:11px;"&gt;$body_first&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
-	&lt;table cellpadding="1" cellspacing="1" row_datasource="@description_quot" style="border-collapse:collapse;margin-left:20px;margin-top:0px;width:95%;line-height:1;"&gt;
+	&lt;table cellpadding="1" cellspacing="1" row_datasource="@description_quot" class="table"&gt;
 		&lt;tbody&gt;
 			&lt;tr&gt;
 				&lt;td&gt;
@@ -98,7 +98,7 @@
 	&lt;!-- =====================================================
          EXTRA
          ===================================================== --&gt;
-	&lt;table cellpadding="1" cellspacing="1" row_datasource="@quotazione_extra" style="border-collapse:collapse;margin-left:20px;margin-top:15px;width:95%;line-height:1;"&gt;
+	&lt;table cellpadding="1" cellspacing="1" row_datasource="@quotazione_extra" class="table"&gt;
 		&lt;tbody&gt;
 			&lt;tr&gt;
 				&lt;td&gt;
@@ -111,14 +111,14 @@
 	&lt;!-- =====================================================
          SERVIZI INCLUSI
          ===================================================== --&gt;
-	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;margin-top:0px;"&gt;
+	&lt;div class="div_top"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$servincl_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
-	&lt;div row_datasource="@servincl_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div row_datasource="@servincl_quot" class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$services_included_description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	&lt;!-- =====================================================
          NOTE
          ===================================================== --&gt;
-	&lt;table cellpadding="1" cellspacing="1" row_datasource="@note_quot" style="border-collapse:collapse;margin-left:20px;margin-top:15px;width:95%;line-height:1;"&gt;
+	&lt;table cellpadding="1" cellspacing="1" row_datasource="@note_quot" class="table"&gt;
 		&lt;tbody&gt;
 			&lt;tr&gt;
 				&lt;td&gt;
@@ -131,34 +131,34 @@
 	&lt;!-- =====================================================
          CONDIZIONI SPECIFICHE
          ===================================================== --&gt;
-	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$spec_cond_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
-	&lt;div row_datasource="@specific_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div row_datasource="@specific_quot" class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$specific_conditions_description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;!-- =====================================================
          SERVIZI ESCLUSI
          ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
-	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$servexcl_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
-	&lt;div row_datasource="@serviexcl_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div row_datasource="@serviexcl_quot" class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$services_excluded_description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;!-- =====================================================
          MAGGIORAZIONI
          ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
-	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$surcharges_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
-	&lt;div row_datasource="@surcharge_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div row_datasource="@surcharge_quot" class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$surcharges_description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;!-- =====================================================
          ORARI
          ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
-	&lt;div row_datasource="@times_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div row_datasource="@times_quot" class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$working_times_description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
-	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$note&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
-	&lt;div row_datasource="@paym_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div row_datasource="@paym_quot" class="div"&gt;
 		&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;span style="font-size:11px;"&gt;&lt;strong&gt;Condizioni di pagamento:&lt;/strong&gt; $payment_conditions_description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
-	&lt;table cellpadding="1" cellspacing="1" style="border-collapse:collapse;margin-left:20px;margin-top:15px;width:95%;line-height:1;"&gt;
+	&lt;table cellpadding="1" cellspacing="1" class="table"&gt;
 		&lt;tbody&gt;
 			&lt;tr&gt;
 				&lt;td&gt;
@@ -175,12 +175,12 @@
 	&lt;span style="font-size:10px;"&gt;&lt;!-- =========================================================
      ACCETTAZIONE
      ========================================================= --&gt;&lt;/span&gt;
-	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div class="div"&gt;
 		&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$acceptance&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
-	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div class="div"&gt;
 		&amp;nbsp;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+&lt;div class="div"&gt;
 	&amp;nbsp;&lt;/div&gt;</content>
 <metadata><author>admin</author>
 <version _T="NN"></version>
@@ -590,7 +590,27 @@
 <mask _T="NN" dtype="::NN"></mask></gsx34rvq0x></varsbag>
 <parameters _T="BAG"></parameters>
 <email><attached_reports _T="BAG"></attached_reports></email>
-<content_css></content_css>
+<content_css>.table{
+  border-collapse:collapse;
+  margin-left:20px;
+  margin-top:15px;
+  line-height:1;
+  width:95%;
+}
+.div{
+  border-collapse:collapse;
+  margin-left:20px;
+  margin-right:20px;
+  line-height:1;
+}
+
+.div_top{
+  border-collapse:collapse;
+  margin-left:20px;
+  margin-right:20px;
+  line-height:1;
+  margin-top:5px;
+}</content_css>
 <compiled><_description_quot _tag="@description_quot">&lt;tr&gt;
 				&lt;td&gt;
 					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$description&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
@@ -605,7 +625,7 @@
 					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$extra_um $extra_amount&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 		</_quotazione_extra>
-<_servincl_quot _tag="@servincl_quot">&lt;div row_datasource="@servincl_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+<_servincl_quot _tag="@servincl_quot">&lt;div row_datasource="@servincl_quot" class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$@servicesincl_id.description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	</_servincl_quot>
 <_note_quot _tag="@note_quot">&lt;tr&gt;
@@ -615,26 +635,46 @@
 					&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$um $amount&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 		</_note_quot>
-<_specific_quot _tag="@specific_quot">&lt;div row_datasource="@specific_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+<_specific_quot _tag="@specific_quot">&lt;div row_datasource="@specific_quot" class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	</_specific_quot>
-<_serviexcl_quot _tag="@serviexcl_quot">&lt;div row_datasource="@serviexcl_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+<_serviexcl_quot _tag="@serviexcl_quot">&lt;div row_datasource="@serviexcl_quot" class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$@servicesexcl_id.description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	</_serviexcl_quot>
-<_surcharge_quot _tag="@surcharge_quot">&lt;div row_datasource="@surcharge_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+<_surcharge_quot _tag="@surcharge_quot">&lt;div row_datasource="@surcharge_quot" class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$@surcharges_id.description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	</_surcharge_quot>
-<_times_quot _tag="@times_quot">&lt;div row_datasource="@times_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+<_times_quot _tag="@times_quot">&lt;div row_datasource="@times_quot" class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$@worktimes_id.description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	</_times_quot>
-<_paym_quot _tag="@paym_quot">&lt;div row_datasource="@paym_quot" style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+<_paym_quot _tag="@paym_quot">&lt;div row_datasource="@paym_quot" class="div"&gt;
 		&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;span style="font-size:11px;"&gt;&lt;strong&gt;Condizioni di pagamento:&lt;/strong&gt; $@paymentcond_id.description&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	</_paym_quot>
-<main maintable="quotazioni.quotazione_versione" locale="it" virtual_columns="acceptance,agent_sign,stamp,servincl_int,servexcl_int,spec_cond_int,surcharges_int" columns="$data,@quotazione_id.quot_n,$oggetto,@quotazione_id.@cliente_id.rag_sociale,@quotazione_id.@cliente_id.address,@quotazione_id.@cliente_id.cap,@quotazione_id.@cliente_id.city,@quotazione_id.@agency_id.agency_stamp,$acceptance,$agent_sign,$stamp,@quotazione_id.@agency_id.agency_name,@quotazione_id.@agency_id.cf,@quotazione_id.@agency_id.vat,@quotazione_id.@agency_id.web,@quotazione_id.@agency_id.email,@quotazione_id.@agency_id.fax,@quotazione_id.@agency_id.tel,@quotazione_id.@agency_id.agency_logo,@quotazione_id.@agency_id.address,$body_in,@description_quot.description,@description_quot.um,@description_quot.amount,@quotazione_extra.extra_description,@quotazione_extra.extra_um,@quotazione_extra.extra_amount,@paym_quot.@paymentcond_id.description,@servincl_quot.@servicesincl_id.description,$servincl_int,$servexcl_int,@serviexcl_quot.@servicesexcl_id.description,@times_quot.@worktimes_id.description,$spec_cond_int,@specific_quot.description,@note_quot.description,@note_quot.um,@note_quot.amount,$surcharges_int,@surcharge_quot.@surcharges_id.description" formats='{"agency_timbro_agenzia": "auto", "agency_stamp": "auto", "agency_logo": "auto"}::JS' masks="{}::JS" editcols="{}::JS" df_templates="{}::JS" dtypes='{"data": "D", "quot_n": "T", "oggetto": "T", "customer_rag_sociale": "T", "customer_address": "T", "customer_cap": "T", "customer_city": "T", "agency_timbro_agenzia": "P", "acceptance": "T", "agent_sign": "A", "agency_stamp": "P", "agency_name": "T", "agency_cf": "T", "agency_vat": "A", "agency_web": "T", "agency_email": "T", "agency_fax": "T", "agency_tel": "T", "agency_logo": "P", "agency_address": "T", "body_first": "T", "descrizione_description": "T", "descrizione_um": "T", "descrizione_amount": "T", "extra_description": "T", "extra_um": "T", "extra_amount": "T", "payment_conditions_description": "T", "services_included_description": "T", "servincl_int": "T", "servexcl_int": "T", "services_excluded_description": "T", "working_times_description": "T", "spec_cond_int": "T", "specific_conditions_description": "T", "note_description": "T", "note_um": "T", "note_amount": "T", "surcharges_int": "T", "surcharges_description": "T"}::JS'>&lt;div&gt;
+<main maintable="quotazioni.quotazione_versione" locale="it" virtual_columns="acceptance,agent_sign,stamp,servincl_int,servexcl_int,spec_cond_int,surcharges_int" columns="$data,@quotazione_id.quot_n,$oggetto,@quotazione_id.@cliente_id.rag_sociale,@quotazione_id.@cliente_id.address,@quotazione_id.@cliente_id.cap,@quotazione_id.@cliente_id.city,@quotazione_id.@agency_id.agency_stamp,$acceptance,$agent_sign,$stamp,@quotazione_id.@agency_id.agency_name,@quotazione_id.@agency_id.cf,@quotazione_id.@agency_id.vat,@quotazione_id.@agency_id.web,@quotazione_id.@agency_id.email,@quotazione_id.@agency_id.fax,@quotazione_id.@agency_id.tel,@quotazione_id.@agency_id.agency_logo,@quotazione_id.@agency_id.address,$body_in,@description_quot.description,@description_quot.um,@description_quot.amount,@quotazione_extra.extra_description,@quotazione_extra.extra_um,@quotazione_extra.extra_amount,@paym_quot.@paymentcond_id.description,@servincl_quot.@servicesincl_id.description,$servincl_int,$servexcl_int,@serviexcl_quot.@servicesexcl_id.description,@times_quot.@worktimes_id.description,$spec_cond_int,@specific_quot.description,@note_quot.description,@note_quot.um,@note_quot.amount,$surcharges_int,@surcharge_quot.@surcharges_id.description" formats='{"agency_timbro_agenzia": "auto", "agency_stamp": "auto", "agency_logo": "auto"}::JS' masks="{}::JS" editcols="{}::JS" df_templates="{}::JS" dtypes='{"data": "D", "quot_n": "T", "oggetto": "T", "customer_rag_sociale": "T", "customer_address": "T", "customer_cap": "T", "customer_city": "T", "agency_timbro_agenzia": "P", "acceptance": "T", "agent_sign": "A", "agency_stamp": "P", "agency_name": "T", "agency_cf": "T", "agency_vat": "A", "agency_web": "T", "agency_email": "T", "agency_fax": "T", "agency_tel": "T", "agency_logo": "P", "agency_address": "T", "body_first": "T", "descrizione_description": "T", "descrizione_um": "T", "descrizione_amount": "T", "extra_description": "T", "extra_um": "T", "extra_amount": "T", "payment_conditions_description": "T", "services_included_description": "T", "servincl_int": "T", "servexcl_int": "T", "services_excluded_description": "T", "working_times_description": "T", "spec_cond_int": "T", "specific_conditions_description": "T", "note_description": "T", "note_um": "T", "note_amount": "T", "surcharges_int": "T", "surcharges_description": "T"}::JS'>&lt;style&gt;.table{
+  border-collapse:collapse;
+  margin-left:20px;
+  margin-top:15px;
+  line-height:1;
+  width:95%;
+}
+.div{
+  border-collapse:collapse;
+  margin-left:20px;
+  margin-right:20px;
+  line-height:1;
+}
+
+.div_top{
+  border-collapse:collapse;
+  margin-left:20px;
+  margin-right:20px;
+  line-height:1;
+  margin-top:5px;
+}&lt;/style&gt;&lt;div&gt;
 	&lt;!-- =====================================================
          INTESTAZIONE AGENZIA
          ===================================================== --&gt;
-	&lt;table cellpadding="1" cellspacing="1" style="border-collapse:collapse;margin-left:20px;margin-top:15px;line-height:1;width:95%;"&gt;
+	&lt;table cellpadding="1" cellspacing="1" class="table"&gt;
 		&lt;tbody&gt;
 			&lt;tr&gt;
 				&lt;td&gt;
@@ -666,7 +706,7 @@
 	&lt;!-- =====================================================
          DATI DOCUMENTO / CLIENTE
          ===================================================== --&gt;
-	&lt;table cellpadding="1" cellspacing="1" style="border-collapse:collapse;margin-left:20px;margin-top:15px;line-height:1;width:95%;"&gt;
+	&lt;table cellpadding="1" cellspacing="1" class="table"&gt;
 		&lt;tbody&gt;
 			&lt;tr&gt;
 				&lt;td&gt;
@@ -694,10 +734,10 @@
          OGGETTO
          ===================================================== --&gt;
 	
-&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+&lt;div class="div"&gt;
 		&amp;#160;&lt;/div&gt;
 	
-&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+&lt;div class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;Oggetto/Subject: $oggetto&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	
 &lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;span style="font-size:11px;"&gt;&lt;!-- =====================================================
@@ -708,10 +748,10 @@
          Pu&amp;#242; contenere testo, tabelle, immagini, div ecc.
          ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
 	
-&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;margin-top:5px;"&gt;
+&lt;div class="div_top"&gt;
 		&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;span style="font-size:11px;"&gt;$body_in&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	
-&lt;table cellpadding="1" cellspacing="1" row_datasource="@description_quot" style="border-collapse:collapse;margin-left:20px;margin-top:0px;width:95%;line-height:1;"&gt;
+&lt;table cellpadding="1" cellspacing="1" row_datasource="@description_quot" class="table"&gt;
 		&lt;tbody&gt;
 			
 $@description_quot
@@ -722,7 +762,7 @@ $@description_quot
          EXTRA
          ===================================================== --&gt;
 	
-&lt;table cellpadding="1" cellspacing="1" row_datasource="@quotazione_extra" style="border-collapse:collapse;margin-left:20px;margin-top:15px;width:95%;line-height:1;"&gt;
+&lt;table cellpadding="1" cellspacing="1" row_datasource="@quotazione_extra" class="table"&gt;
 		&lt;tbody&gt;
 			
 $@quotazione_extra
@@ -733,7 +773,7 @@ $@quotazione_extra
          SERVIZI INCLUSI
          ===================================================== --&gt;
 	
-&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;margin-top:0px;"&gt;
+&lt;div class="div_top"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$servincl_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	
 
@@ -743,7 +783,7 @@ $@servincl_quot
          NOTE
          ===================================================== --&gt;
 	
-&lt;table cellpadding="1" cellspacing="1" row_datasource="@note_quot" style="border-collapse:collapse;margin-left:20px;margin-top:15px;width:95%;line-height:1;"&gt;
+&lt;table cellpadding="1" cellspacing="1" row_datasource="@note_quot" class="table"&gt;
 		&lt;tbody&gt;
 			
 $@note_quot
@@ -754,7 +794,7 @@ $@note_quot
          CONDIZIONI SPECIFICHE
          ===================================================== --&gt;
 	
-&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+&lt;div class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$spec_cond_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	
 
@@ -764,7 +804,7 @@ $@specific_quot
          SERVIZI ESCLUSI
          ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
 	
-&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+&lt;div class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$servexcl_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	
 
@@ -774,7 +814,7 @@ $@serviexcl_quot
          MAGGIORAZIONI
          ===================================================== --&gt;&lt;/span&gt;&lt;/span&gt;
 	
-&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+&lt;div class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;&lt;strong&gt;$surcharges_int&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	
 
@@ -787,13 +827,13 @@ $@surcharge_quot
 
 $@times_quot
 
-&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+&lt;div class="div"&gt;
 		&lt;span style="font-size:11px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$note&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 	
 
 $@paym_quot
 
-&lt;table cellpadding="1" cellspacing="1" style="border-collapse:collapse;margin-left:20px;margin-top:15px;width:95%;line-height:1;"&gt;
+&lt;table cellpadding="1" cellspacing="1" class="table"&gt;
 		&lt;tbody&gt;
 			&lt;tr&gt;
 				&lt;td&gt;
@@ -811,13 +851,13 @@ $@paym_quot
 	&lt;span style="font-size:10px;"&gt;&lt;!-- =========================================================
      ACCETTAZIONE
      ========================================================= --&gt;&lt;/span&gt;
-	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div class="div"&gt;
 		&lt;span style="font-size:10px;"&gt;&lt;span style="font-family:tahoma,geneva,sans-serif;"&gt;$acceptance&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
-	&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+	&lt;div class="div"&gt;
 		&amp;#160;&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div style="border-collapse:collapse;margin-left:20px;margin-right:20px;line-height:1;"&gt;
+&lt;div class="div"&gt;
 	&amp;#160;&lt;/div&gt;</main></compiled></data>
 <authtags _T="NN" dtype="T" name_long="!![en]Auth tags" print_width="20::L" as="t0_authtags"></authtags>
 <private _T="B" dtype="B" name_long="!![en]Private" print_width="11::L" as="t0_private">False</private>

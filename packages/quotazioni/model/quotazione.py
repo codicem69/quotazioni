@@ -14,13 +14,15 @@ class Table(object):
         #tbl.column('firma', dtype='B', name_long='!![en]Signature', name_short='!![en]Sign')
         tbl.column('cliente_id',size='22', group='_', name_long='!![en]Customer'
                     ).relation('cliente.id', relation_name='cliente_quot', mode='foreignkey', onDelete='raise')
+        tbl.column('quotazione_madre_id', size='22', group='_', name_long='!![en]Parent Quotation'
+                  ).relation('quotazione.id', relation_name='figlie', mode='foreignkey', onDelete='setnull')
         #tbl.column('versione_id', size='22', name_long='!![en]Current version').relation('quotazione_versione.id',
         #    relation_name='versione_corrente', mode='foreignkey', onDelete='raise')
         
         #tbl.column('body_in', name_long='!![en]Body first')
         #tbl.column('htmlbag_quot', dtype='X', name_long='!![en]Html quotation doc')
         tbl.formulaColumn('full_quot',"""$data || coalesce(' - '|| $quot_n, '') || coalesce(' - '|| $oggetto,'')""" )
-        
+        tbl.formulaColumn('quot_corrispondenza_id','COALESCE($quotazione_madre_id, $id)')
         #tbl.aliasColumn('cliente_br', '@cliente_id.cliente_br')
         #tbl.aliasColumn('cliente', '@cliente_id.full_cliente')
         #tbl.aliasColumn('agencystamp','@agency_id.agency_stamp',dtype='P')

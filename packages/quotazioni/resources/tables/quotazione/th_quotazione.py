@@ -38,6 +38,7 @@ class Form(BaseComponent):
     py_requires='gnrcomponents/pagededitor/pagededitor:PagedEditor,gnrcomponents/attachmanager/attachmanager:AttachManager'
     #py_requires='gnrcomponents/pagededitor/pagededitor:PagedEditor,quotationattachmanager:QuotationAttachManager'
     def th_form(self, form):
+        form.store.handler('load',virtual_columns='$quot_corrispondenza_id')
         tc = form.center.tabContainer()
         bc = tc.borderContainer(title='!![en]Quotation')
         bc_att = tc.borderContainer(title='!![en]<strong>Corrispondence</strong>')
@@ -77,8 +78,13 @@ class Form(BaseComponent):
         pane.stackTableHandler(relation='@quot_vers',viewResource='View')
        
     def corrispondenza(self,pane):
-        pane.stackTableHandler(relation='@corrisp',viewResource='View')
-
+        #pane.stackTableHandler(relation='@corrisp',viewResource='View')#,condition="""$quotazione_id = :quotazione_id""",
+        #condition_quotazione_id='^#FORM.record.quot_corrispondenza_id',condition_onStart=True)
+        
+        pane.stackTableHandler(table='quotazioni.corrispondenza',viewResource='View',
+                               default_quotazione_id='=#FORM/parent/#FORM.record.quot_corrispondenza_id',                             
+                               condition_onStart=True)
+        
     def dettagli(self,pane):
         #leftdett = pane.roundedGroup(title='!![en]Proforma details', height='auto')
         #fb = leftdett.formbuilder(cols=1, border_spacing='4px',margin='4px')
@@ -735,6 +741,8 @@ class Form(BaseComponent):
         fb.field('quot_n', readOnly=True, width='100%')
         fb.br()
         fb.field('oggetto', colspan=3, width='98%',height='100%', tag='simpleTextArea' )
+        fb.field('quotazione_madre_id')
+        
         #fb.field('firma')
         
         #fb.field('cliente_id' )

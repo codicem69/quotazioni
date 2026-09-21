@@ -23,12 +23,17 @@ class View(BaseComponent):
     def th_query(self):
         return dict(column='description', op='contains', val='')
 
+    def th_condition(self):
+            return dict(condition='$quotazione_id=:id',condition_id='^#FORM.record.quot_corrispondenza_id')    
+
+    
 
 class Form(BaseComponent):
     py_requires="gnrcomponents/attachmanager/attachmanager:AttachManager"
 
     def th_form(self, form):
         #pane = form.record
+        
         bc = form.center.borderContainer()
         self.datiQuotReceived(bc.roundedGroupFrame(title='!![en]Quotation received description',region='top',datapath='.record',height='120px', background='lightgrey', splitter=True))
         self.corrispondence_att(bc.contentPane(region='center', title='!![en]Attachments'))
@@ -43,6 +48,9 @@ class Form(BaseComponent):
         fb.field('destinatario')
         fb.field('description', width='60em', tag='simpleTextArea')
         fb.field('stato')
+        #fb.dataController("""if(pkey=='*newrecord*'){
+        #                SET this.form.record.quotazione_id.quotazione_id = q_id;}
+        #            """,pkey='^#FORM.quotazioni_corrispondenza.form.controller.loaded',q_id='=#FORM.record.id')
     
     def corrispondence_att(self,pane):
         #pane.attachmentGrid(viewResource='ViewFromCorrisponceAtc')
@@ -1340,3 +1348,5 @@ class Form(BaseComponent):
              
     def th_options(self):
         return dict(dialog_height='400px', dialog_width='600px' )
+
+    

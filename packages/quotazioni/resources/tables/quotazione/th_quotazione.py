@@ -741,7 +741,7 @@ class Form(BaseComponent):
         fb.field('quot_n', readOnly=True, width='100%')
         fb.br()
         fb.field('oggetto', colspan=3, width='98%',height='100%', tag='simpleTextArea' )
-        fb.field('quotazione_madre_id')
+        fb.field('quotazione_madre_id', hasDownArrow=True, width='98%', colspan=3)
         
         #fb.field('firma')
         

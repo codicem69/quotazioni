@@ -369,7 +369,7 @@ class Form(BaseComponent):
             #viene appesa alla variabile lista file_url
             for pkeys_att in lista_pkeys_att:
                 
-                fileurl = tbl_att.readColumns(columns='$fileurl',
+                fileurl = tbl_att.readColumns(columns='$filepath',
                       where='$id=:att_id',
                         att_id=pkeys_att)
                 if fileurl is not None and fileurl !='':

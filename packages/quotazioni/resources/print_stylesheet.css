@@ -1,0 +1,22 @@
+@page {
+    size: A4;
+    margin: 10mm 15mm 10mm 15mm;
+}
+
+/* Permette il salto di pagina dentro il contenuto HTML */
+body, .html-content-wrapper {
+    orphans: 2;
+    widows: 2;
+}
+
+/* Forza WeasyPrint a permettere il taglio del contenuto */
+div, p, table, section {
+    break-inside: auto;        /* permette di spezzare */
+    page-break-inside: auto;   /* compatibilità vecchia sintassi */
+}
+
+/* Se hai paragrafi che NON devono essere spezzati */
+p {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}

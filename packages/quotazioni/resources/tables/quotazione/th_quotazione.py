@@ -129,9 +129,10 @@ class Form(BaseComponent):
         
         self.quotationAttachmentGrid(pane)
 
+
     def quotationAttachmentGrid(self, pane):
 
-        bc = pane.borderContainer()
+        bc = pane.borderContainer(design='sidebar')
 
         # ============================================================
         # GRIGLIA ALLEGATI
@@ -145,15 +146,18 @@ class Form(BaseComponent):
             relation='@atc_attachments',
             viewResource='gnrcomponents/attachmanager/attachmanager:AttachManagerView',
             hider=True,
+            statusColumn=True,
             autoSelect=True,
             addrow=False,
             delrow=True,
             pbl_classes=True,
             semaphore=False,
             searchOn=False,
-            datapath='.attachments'
+            datapath='.attachments',
+            autoSave=True,
+            grid_selfDragRows=True
         )
-      
+
         # ============================================================
         # DRAG & DROP
         # ============================================================
@@ -165,120 +169,104 @@ class Form(BaseComponent):
                   '</div>',
             height='40px',
             onUploadingMethod=self.onUploadingAttachment,
+            onUploadedMethod=self.onUploadedAttachment,
             rpc_maintable_id='=#FORM.pkey',
             rpc_attachment_table=th.view.grid.attributes['table'],
             _class='importerPaletteDropUploaderBox',
             cursor='pointer',
             nodeId='%(nodeId)s_uploader' % th.attributes
         )
-  
-        # ============================================================
-        # VIEWER
+
+            # ============================================================
+        # VIEWER CON STACKCONTAINER
         # ============================================================
 
-        viewer = bc.contentPane(
+        readerpane = bc.contentPane(
             region='center',
-            overflow='auto'
+            overflow='hidden',
+            margin='2px',
+            border='1px solid silver'
         )
 
-        # Viewer file normali
-        viewer.iframe(
-            src='^#FORM.reader_url',
+        readerstack = readerpane.stackContainer(
+            selectedPage='^.reader_mode',
+            height='100%',
+            width='100%'
+        )
+
+        # --- Pagina viewer (PDF, immagini, ecc.) ---
+        viewerpage = readerstack.contentPane(
+            pageName='viewer',
+            overflow='hidden'
+        )
+        viewerpage.iframe(
+            src='^.reader_url',
             height='100%',
             width='100%',
-            border=0,
-            documentClasses=True,
             avoidCache=True,
-            hidden='^.is_eml'
+            border=0,
+            documentClasses=True
         )
 
-        # ============================================================
-        # VISUALIZZAZIONE EML
-        # ============================================================
-
-        eml = viewer.contentPane(
-            hidden='=!^.is_eml',
+        # --- Pagina EML ---
+        emlpage = readerstack.contentPane(
+            pageName='eml',
             overflow='auto',
-            padding='15px',
-            height='100%',
-            box_sizing='border-box'
+            padding='15px'
         )
 
-        # ============================================================
-        # HEADER EMAIL
-        # ============================================================
-        
-        eml.div(
-            '^.eml.subject',
-            font_size='18px',
-            font_weight='bold',
-            margin_bottom='15px'
-        )
-        
-        eml.div(
-            '^.eml.from',
-            margin_bottom='5px'
-        )
-        
-        eml.div(
-            '^.eml.to',
-            margin_bottom='5px'
-        )
-        
-        eml.div(
-            '^.eml.cc',
-            margin_bottom='5px'
-        )
-        
-        eml.div(
-            '^.eml.date',
-            margin_bottom='15px'
-        )
-        
-        # ============================================================
-        # CORPO EMAIL
-        # ============================================================
-        
-        bodypane = eml.contentPane(
+        emlpage.div('^.eml.subject', font_size='18px', font_weight='bold', margin_bottom='15px')
+        emlpage.div('^.eml.from', margin_bottom='5px')
+        emlpage.div('^.eml.to', margin_bottom='5px')
+        emlpage.div('^.eml.cc', margin_bottom='5px')
+        emlpage.div('^.eml.date', margin_bottom='15px')
+
+        bodypane = emlpage.contentPane(
             border_top='1px solid #ccc',
             padding_top='15px',
             overflow='visible'
         )
-        
-        bodypane.div(
-            '^.eml.body',
-            width='100%',
-            overflow='visible'
-        )
-        
-        # ============================================================
-        # ALLEGATI PRESENTI NELL'EML
-        # ============================================================
-        
-        attpane = eml.contentPane(
-            hidden='=!^.eml.attachments_html',
+        bodypane.div('^.eml.body', width='100%', overflow='visible')
+
+        attpane = emlpage.contentPane(
+            hidden='=!^.eml.attachments.length',
             margin_top='25px',
             border_top='1px solid #ccc',
             padding_top='15px'
         )
-        
+
         attpane.div(
             'Allegati',
             font_weight='bold',
             font_size='16px',
             margin_bottom='10px'
         )
-        
+
         attpane.div(
-            '^.eml.attachments_html',
-            width='100%'
+            'Nessun allegato',
+            hidden='^.eml.attachments.length'
+        )
+
+        attpane.div(
+            'Allegati disponibili: ',
+            font_weight='bold'
         )
 
         # ============================================================
+        # INIZIALIZZAZIONE NODI (fondamentale: crea i nodi prima del dataRpc)
+        # ============================================================
+
+        #readerpane.dataController("""
+        #    SET .eml_fileurl = '';
+        #    SET .reader_url = '';
+        #    SET .reader_mode = 'viewer';
+        #""")
+#
+         # ============================================================
         # SELEZIONE FILE
         # ============================================================
 
-        viewer.dataController(
+        readerpane.dataController(
             """
             var filename = fileurl ? fileurl.split('/').pop() : '';
 
@@ -287,94 +275,85 @@ class Form(BaseComponent):
                         : '';
 
             console.log('FILEURL:', fileurl);
-            console.log('FILENAME:', filename);
             console.log('EXT:', ext);
 
             if(ext == 'eml') {
-
-                SET .is_eml=true;
-                SET .eml_fileurl=fileurl;
-                SET .reader_url=null;
-
+                SET .is_eml = true;
+                SET .reader_mode = 'eml';
+                SET .eml_fileurl = fileurl;
             } else {
-
-                SET .is_eml=false;
-                SET .eml_fileurl=null;
-                SET .eml=null;
-                SET .reader_url=fileurl;
-
+                SET .is_eml = false;
+                SET .reader_mode = 'viewer';
+                SET .reader_url = fileurl;
+                SET .eml = null;
             }
             """,
-            fileurl='^.attachments.view.grid.selectedId?fileurl'
+            fileurl='^.attachments.view.grid.selectedId?fileurl',
+            ext='=fileurl'
         )
 
         # ============================================================
         # LETTURA EML
         # ============================================================
 
-        viewer.dataRpc(
-        '.eml',
-        self.readEml,
-        fileurl='^.eml_fileurl',
-        _onResult="""
-            console.log('>>> RISULTATO READ EML:', result);
-    
-            if(result && !result.error) {
-    
-                SET .eml.subject=result.subject || '';
-                SET .eml.from=result.from || '';
-                SET .eml.to=result.to || '';
-                SET .eml.cc=result.cc || '';
-                SET .eml.date=result.date || '';
-                SET .eml.body=result.body || '';
-    
-                SET .eml.attachments=result.attachments || [];
-    
-                var html = '';
-    
-                if(result.attachments && result.attachments.length){
-    
-                    html += '<div style="display:flex;flex-direction:column;gap:8px;">';
-    
-                    result.attachments.forEach(function(att){
-    
-                        html += '<div style="padding:8px;border:1px solid #ddd;border-radius:5px;background:#f7f7f7;">';
-    
-                        html += '<a href="' + att.url + '" target="_blank">';
-    
-                        html += '📎 ' + att.filename;
-    
-                        html += '</a>';
-    
-                        html += '</div>';
-    
-                    });
-    
-                    html += '</div>';
-                }
-    
-                SET .eml.attachments_html=html;
-    
-            } else if(result && result.error) {
-    
-                SET .eml.subject='Errore lettura EML';
-                SET .eml.from='';
-                SET .eml.to='';
-                SET .eml.cc='';
-                SET .eml.date='';
-                SET .eml.body=result.error;
-                SET .eml.attachments=[];
-                SET .eml.attachments_html='';
-    
-            }
-        """
-    )
+        readerpane.dataRpc(
+            '.eml',
+            self.parseQuotationEml,
+            fileurl='^.eml_fileurl',
+            _onResult="""
+                console.log('>>> RISULTATO PARSE EML:', result);
 
+                if(result && !result.error) {
+
+                    SET .eml.subject=result.subject || '';
+                    SET .eml.from=result.from || '';
+                    SET .eml.to=result.to || '';
+                    SET .eml.cc=result.cc || '';
+                    SET .eml.date=result.date || '';
+                    SET .eml.body=result.body || '';
+                    SET .eml.attachments=result.attachments || [];
+
+                } else if(result && result.error) {
+
+                    SET .eml.body=result.error;
+
+                }
+            """
+        )
+
+        readerpane.dataController("""
+            var html = '';
+        
+            if(attachments && attachments.length){
+        
+                html = '<div style="display:flex;flex-direction:column;gap:8px;">';
+        
+                attachments.forEach(function(att){
+        
+                    html += '<div style="padding:10px;border:1px solid #ddd;background:#fafafa;">';
+        
+                    html += '<span>📄 ' + att.filename + '</span>';
+        
+                    html += '<a href="' + att.url + '" target="_blank" style="margin-left:20px;">Apri</a>';
+        
+                    html += '</div>';
+                });
+        
+                html += '</div>';
+            }
+        
+            SET .eml.attachments_html = html;
+        
+        """,
+            attachments='^.eml.attachments'
+        )
+        
+        attpane.div('^.eml.attachments_html')
         # ============================================================
         # APERTURA ALLEGATO DELL'EML
         # ============================================================
 
-        viewer.dataController(
+        readerpane.dataController(
             """
             if(!attachments || index === null || index === undefined){
                 return;
@@ -395,14 +374,13 @@ class Form(BaseComponent):
             attachments='^.eml.attachments',
             index='=eml_attachment_open.index'
         )
-
+        
         return th
 
+    @public_method
+    def parseQuotationEml(self, fileurl=None, **kwargs):
 
-    @public_method
-    @public_method
-    def readEml(self, fileurl=None, **kwargs):
-    
+        print('>>> PARSE QUOTATION EML:', fileurl)
         if not fileurl:
             return {'error': 'fileurl mancante'}
     
@@ -445,7 +423,25 @@ class Form(BaseComponent):
                 filename = filename.replace('\\', '_')
     
                 return filename
+
+            # ============================================================
+            # PULIZIA FILEURL
+            # ============================================================
+            # Il fileurl può arrivare in due formati:
+            #   1) home:quotazioni_quotazione/xxx/file.eml       (path relativo)
+            #   2) http://127.0.0.1:8087/home:quotazioni.../file.eml  (URL completo)
+            # storageNode vuole il formato 1, quindi rimuoviamo il prefisso HTTP.
+            # ============================================================
     
+            if '://' in fileurl:
+                # http://127.0.0.1:8087/home:... → home:...
+                fileurl = fileurl.split('://', 1)[1]
+                if '/' in fileurl:
+                    fileurl = fileurl.split('/', 1)[1]
+    
+            storage_url = fileurl.lstrip('/')
+    
+            file_sn = self.site.storageNode(storage_url)
             # ============================================================
             # RISOLUZIONE STORAGE
             # ============================================================
@@ -829,9 +825,7 @@ class Form(BaseComponent):
         builder = QuotationDocxBuilder(self.db,self.site)
 
         result = builder.build(record['id'])
-
         
-        print(x)
         #prendiamo il percorso del file quotation.doc negli allegati dell'Agenzia
         id_agz_atc=record['agency_id']
         #tbl_agzatt =  self.db.table('agz.agency_atc')

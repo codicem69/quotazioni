@@ -129,36 +129,51 @@ class Form(BaseComponent):
         )
 
         viewer.dataRpc(
-            '.email_pdf',
-            self.emailToPdf,
-            fileurl='=.eml_fileurl',
-            subscribe_print_email=True,
-            _onResult="""
-                console.log('>>> RISULTATO EMAIL TO PDF:', result);
-        
-                if(result && result.url){
-        
-                    console.log(
-                        '>>> APRO PDF:',
-                        result.url
-                    );
-        
-                    window.open(
-                        result.url,
-                        '_blank'
-                    );
-        
-                }
-                else if(result && result.error){
-        
-                    alert(
-                        'Errore generazione PDF: ' +
-                        result.error
-                    );
-        
-                }
-            """
+           '.email_pdf',
+           self.emailToPdf,
+           fileurl='=.eml_fileurl',
+           subscribe_print_email=True,
+           _onResult="""
+               console.log('>>> RISULTATO EMAIL PDF:', result);
+
+               if(result && result.url){
+                   window.open(result.url, '_blank');
+               } else {
+                   console.log('>>> RISULTATO VUOTO O ERRORE:', result);
+               }
+           """
         )
+        #viewer.dataRpc(
+        #    '.email_pdf',
+        #    self.emailToPdf,
+        #    fileurl='=.eml_fileurl',
+        #    subscribe_print_email=True,
+        #    _onResult="""
+        #        console.log('>>> RISULTATO EMAIL TO PDF:', result);
+        #
+        #        if(result && result.url){
+        #
+        #            console.log(
+        #                '>>> APRO PDF:',
+        #                result.url
+        #            );
+        #
+        #            window.open(
+        #                result.url,
+        #                '_blank'
+        #            );
+        #
+        #        }
+        #        else if(result && result.error){
+        #
+        #            alert(
+        #                'Errore generazione PDF: ' +
+        #                result.error
+        #            );
+        #
+        #        }
+        #    """
+        #)
         # ============================================================
         # AREA DOCUMENTO NORMALE
         # ============================================================
@@ -276,10 +291,11 @@ class Form(BaseComponent):
                 SET .is_eml=true;
                 SET .eml_fileurl=fileurl;
                 SET .reader_url=null;
-
+                genro.setData('gnr.print_eml_fileurl', fileurl);
+                
                 console.log('>>> EMAIL SELEZIONATA');
                 console.log('>>> EML FILEURL:', fileurl);
-
+                console.log('>>> DATAPATH EML:', genro.getData('gnr.print_eml_fileurl'));
             } else {
 
                 SET .is_eml=false;
@@ -298,7 +314,7 @@ class Form(BaseComponent):
 
         viewer.dataRpc(
             '.eml',
-            self.readEml,
+            self.parseQuotationEml,
             fileurl='^.eml_fileurl',
 
             _onResult="""
@@ -403,79 +419,12 @@ class Form(BaseComponent):
         # il metodo Python emailToPdf().
         # ============================================================
 
-        viewer.dataController(
-            """
-            var fileurl = genro.getData(
-                '.eml_fileurl'
-            );
-
-            console.log(
-                '>>> PUBLISH STAMPA EMAIL'
-            );
-
-            console.log(
-                '>>> FILEURL:',
-                fileurl
-            );
-
-            if(!fileurl){
-
-                alert(
-                    'Nessuna email selezionata.'
-                );
-
-                return;
-            }
-
-            console.log(
-                '>>> AVVIO EMAIL TO PDF'
-            );
-
-            genro.rpc.remoteCall(
-                'emailToPdf',
-                {
-                    fileurl: fileurl
-                },
-                function(result){
-
-                    console.log(
-                        '>>> RISULTATO EMAIL TO PDF:',
-                        result
-                    );
-
-                    if(result && result.url){
-
-                        window.open(
-                            result.url,
-                            '_blank'
-                        );
-
-                    } else if(result && result.error){
-
-                        alert(
-                            'Errore generazione PDF:\\n' +
-                            result.error
-                        );
-
-                    } else {
-
-                        alert(
-                            'PDF non generato.'
-                        );
-                    }
-                }
-            );
-
-            """,
-
-            _fired='^print_email'
-        )
-
+        
         return th
 
+    
     @public_method
     def emailToPdf(self, fileurl=None, **kwargs):
-
         if not fileurl:
             return {
                 'success': False,
@@ -571,10 +520,16 @@ class Form(BaseComponent):
             # ============================================================
             # DIRECTORY EML
             # ============================================================
+            # ============================================================
+            # RISOLUZIONE DIRECTORY STORAGE
+            # ============================================================
 
-            attachment_dir = os.path.dirname(
-                storage_url
-            )
+            storage_url = fileurl.lstrip('/')
+
+            if storage_url.startswith('http://') or storage_url.startswith('https://'):
+                storage_url = storage_url.split('/', 3)[-1]
+
+            attachment_dir = os.path.dirname(storage_url)
 
             # ============================================================
             # IMMAGINI INLINE
@@ -1021,7 +976,7 @@ class Form(BaseComponent):
     
     
     @public_method
-    def readEml(self, fileurl=None, **kwargs):
+    def parseQuotationEml(self, fileurl=None, **kwargs):
     
         if not fileurl:
             return {'error': 'fileurl mancante'}
@@ -1070,8 +1025,23 @@ class Form(BaseComponent):
             # RISOLUZIONE STORAGE
             # ============================================================
     
-            storage_url = fileurl.lstrip('/')
-    
+            # ============================================================
+            # NORMALIZZAZIONE FILEURL
+            # ============================================================
+
+            from urllib.parse import urlsplit
+
+            if '://' in fileurl:
+            
+                parsed = urlsplit(fileurl)
+                storage_url = parsed.path.lstrip('/')
+
+            else:
+            
+                storage_url = fileurl.lstrip('/')
+
+            print('>>> STORAGE URL:', storage_url)
+
             file_sn = self.site.storageNode(storage_url)
     
             # ============================================================
@@ -1181,35 +1151,79 @@ class Form(BaseComponent):
                 cid_map[content_id] = node.url()
     
             # ============================================================
-            # RICERCA BODY HTML
+            # ESTRAZIONE BODY EMAIL
+            # Gestisce multipart/mixed, multipart/alternative
+            # e multipart/related
             # ============================================================
-    
-            for part in msg.walk():
+
+            body = ''
+            is_html = False
+
+            try:
             
-                if part.get_content_type() != 'text/html':
-                    continue
+                body_part = msg.get_body(
+                    preferencelist=('html', 'plain')
+                )
+
+                if body_part:
                 
-                if part.get_content_disposition() == 'attachment':
-                    continue
+                    body = body_part.get_content()
+
+                    is_html = (
+                        body_part.get_content_type() == 'text/html'
+                    )
+
+            except Exception:
+            
+                import traceback
+                traceback.print_exc()
+
+
+            # ============================================================
+            # FALLBACK: RICERCA MANUALE
+            # ============================================================
+
+            if not body:
+            
+                for part in msg.walk():
                 
-                try:
-                
-                    body = part.get_content()
-    
-                except Exception:
-                
-                    payload = part.get_payload(decode=True)
-    
-                    if payload:
+                    if part.is_multipart():
+                        continue
                     
-                        body = payload.decode(
+                    if part.get_content_disposition() == 'attachment':
+                        continue
+                    
+                    content_type = part.get_content_type()
+
+                    if content_type not in ('text/html', 'text/plain'):
+                        continue
+                    
+                    try:
+                    
+                        content = part.get_content()
+
+                    except Exception:
+                    
+                        payload = part.get_payload(decode=True)
+
+                        if not payload:
+                            continue
+                        
+                        content = payload.decode(
                             part.get_content_charset() or 'utf-8',
                             errors='replace'
                         )
-    
-                if body:
-                    is_html = True
-                    break
+
+                    if content:
+                    
+                        body = content
+                        is_html = content_type == 'text/html'
+                        break
+                    
+                    
+            print('>>> BODY TROVATO:', bool(body))
+            print('>>> BODY HTML:', is_html)
+            print('>>> BODY LUNGHEZZA:', len(body or ''))
                 
             # ============================================================
             # SOSTITUZIONE CID

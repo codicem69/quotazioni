@@ -77,6 +77,16 @@ class Form(BaseComponent):
         self.allegatiQuotazione(tc_right.contentPane(title='!![en]Attachments', height='100%'))
         #self.editQuotation(tc_right.framePane(title='!![EN]Edit PDF Quotation', datapath='#FORM.editPagine'))
     
+    def th_bottom_custom(self, bottom):
+        bar = bottom.slotBar('*,serv_eco,*')
+        bar.serv_eco.button('Inizializzaione servizi economici',disabled='^#FORM.controller.locked',
+                     iconClass='',width='auto',
+                     action="""genro.publish("table_script_run",{table:"quotazioni.quotazione",
+                                                                        res_type:'action',
+                                                                        resource:'inizializza_servizi_economici',
+                                                                        quotazione_ids: pkey})""",
+                                                                        pkey='=#FORM.pkey')
+        
     def datiQuotazione(self,bc):
             bc.contentPane(region='center').linkerBox('cliente_id',margin='2px',openIfEmpty=True, validate_notnull=True,
                                                         columns='$rag_sociale,$address,$cap,$city,$email',

@@ -74,7 +74,6 @@ class Table(object):
                END""",
             dtype='N')
 
-
     def trigger_onUpdated(self, record, old_record=None):
         if not old_record:
             return
@@ -82,6 +81,7 @@ class Table(object):
         tbl_storico = self.db.table('quotazioni.quotazione_servizio_storico')
 
         campi_da_controllare = [
+            'tipo_prezzo',
             'price_cliente',
             'cost_fornitore'
         ]
@@ -91,12 +91,14 @@ class Table(object):
             valore_nuovo = record.get(campo)
 
             if valore_precedente != valore_nuovo:
+                if valore_precedente in (None, ''):
+                    continue
                 tbl_storico.insert({
                     'quotazione_servizio_id': record['id'],
                     'campo': campo,
-                    'valore_precedente': valore_precedente,
-                    'valore_nuovo': valore_nuovo,
+                    'valore_precedente': str(valore_precedente) if valore_precedente is not None else None,
+                    'valore_nuovo': str(valore_nuovo) if valore_nuovo is not None else None,
                     'data_modifica': datetime.now(),
                     'utente_modifica': self.db.currentEnv.get('user'),
                     'origine': 'manuale'
-                })    
+                }) 

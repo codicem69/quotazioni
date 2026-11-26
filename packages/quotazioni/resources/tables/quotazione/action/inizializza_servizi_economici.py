@@ -24,11 +24,20 @@ class Main(BaseResourceAction):
         tbl_servizio = self.db.table('quotazioni.quotazione_servizio')
     
         # Recupero della quotazione selezionata
-        quotazione_ids = self.get_selection_pkeys()
-    
+        batch_parameters = self.batch_parameters or {}
+        extra_parameters = batch_parameters.get('extra_parameters')
+        
+        quotazione_ids = extra_parameters.getItem('quotazione_ids') if extra_parameters else None
+        
+        if not quotazione_ids:
+            quotazione_ids = self.get_selection_pkeys()
+        
+        if isinstance(quotazione_ids, str):
+            quotazione_ids = [quotazione_ids]
+        
         if len(quotazione_ids) != 1:
             raise Exception('Selezionare una sola quotazione.')
-    
+        
         quotazione_id = quotazione_ids[0]
     
         # Recupero della versione scelta nei parametri
@@ -157,20 +166,29 @@ class Main(BaseResourceAction):
                                  record_count=None, **kwargs):
 
         call_kwargs = getattr(self, '_call_kwargs', {}) or {}
+        
+        extra_parameters = call_kwargs.get('extra_parameters')
+        quotazione_ids = extra_parameters.getItem('quotazione_ids') if extra_parameters else None
 
-        selection_name = call_kwargs.get('selectionName')
-        selected_rowidx = call_kwargs.get('selectedRowidx')
-        selection_filter_cb = call_kwargs.get('selectionFilterCb')
-        table_name = call_kwargs.get('table')
+        if isinstance(quotazione_ids, str):
+            quotazione_ids = [quotazione_ids]
 
-        selection = self.getUserSelection(
-            selectionName=selection_name,
-            selectedRowidx=selected_rowidx,
-            filterCb=selection_filter_cb,
-            table=self.db.table(table_name)
-        )
+        if isinstance(quotazione_ids, str):
+            quotazione_ids = [quotazione_ids]
 
-        quotazione_ids = selection.output('pkeylist') if selection else []
+        if not quotazione_ids:
+            selection_name = call_kwargs.get('selectionName')
+            selected_rowidx = call_kwargs.get('selectedRowidx')
+            selection_filter_cb = call_kwargs.get('selectionFilterCb')
+            table_name = call_kwargs.get('table')
+
+            selection = self.getUserSelection(
+                selectionName=selection_name,
+                selectedRowidx=selected_rowidx,
+                filterCb=selection_filter_cb,
+                table=self.db.table(table_name)
+            )
+            quotazione_ids = selection.output('pkeylist') if selection else []
 
         if len(quotazione_ids) != 1:
             raise Exception('Selezionare una sola quotazione.')

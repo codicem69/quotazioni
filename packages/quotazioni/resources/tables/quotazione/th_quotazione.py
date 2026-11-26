@@ -129,8 +129,10 @@ class Form(BaseComponent):
         #condition_quotazione_id='^#FORM.record.quot_corrispondenza_id',condition_onStart=True)
         
         pane.stackTableHandler(table='quotazioni.corrispondenza',viewResource='View',
-                               default_quotazione_id='=#FORM/parent/#FORM.record.quot_corrispondenza_id',                             
-                               condition_onStart=True)
+                               default_quotazione_id='=#FORM/parent/#FORM.record.id',                             
+                               condition='$quotazione_id=:quotazione_id',
+                               condition_quotazione_id='^#FORM/parent/#FORM.record.id',
+                               condition_onStart=True,condition__onBuilt=True,view_store__onBuilt=True,pbl_classes=True)
     
     def situazioneEconomica(self, pane):
         #top = pane.contentPane(region='top',height='150px',padding='10px')
@@ -149,19 +151,28 @@ class Form(BaseComponent):
     def riepilogoEconomicoLazyMode(self,pane):
             pane.inlineTableHandler(table='quotazioni.quotazione_servizio',
                                     default_quotazione_id='=#FORM/parent/#FORM.record.id',
-                                    condition_onStart=True,viewResource='ViewDashboard',pbl_classes=True,
+                                    condition='$quotazione_id=:quotazione_id',
+                                    condition_quotazione_id='^#FORM/parent/#FORM.record.id',
+                                    condition_onStart=True,viewResource='ViewDashboard',pbl_classes=True,condition__onBuilt=True,
                                     view_store__onBuilt=True,addrow=False,delrow=False)
    
     @public_method
     def quotServLazyMode(self, pane):
         pane.stackTableHandler(table='quotazioni.quotazione_servizio',default_quotazione_id='=#FORM/parent/#FORM.record.id',
-        condition_onStart=True,viewResource='View',view_store__onBuilt=True)
+                               condition='$quotazione_id=:quotazione_id',
+                               condition_quotazione_id='^#FORM/parent/#FORM.record.id',
+                               condition_onStart=True,condition__onBuilt=True,viewResource='View',view_store__onBuilt=True,pbl_classes=True)
 
     @public_method
     def quotServStorLazyMode(self, pane):
         pane.stackTableHandler(table='quotazioni.quotazione_servizio_storico',viewResource='View',view_store__onBuilt=True,
-                                default_quotazione_id='=#FORM/parent/#FORM.record.quotazione_servizio_id',                             
-                                       condition_onStart=True)
+                                default_quotazione_servizio_id='=#FORM/parent/#FORM.record.id',   
+                                condition="""$quotazione_servizio_id IN (
+                                               SELECT id
+                                               FROM quotazioni.quotazioni_quotazione_servizio
+                                               WHERE quotazione_id = :quotazione_id)""",
+                                condition_quotazione_id='^#FORM/parent/#FORM.record.id',                          
+                                condition_onStart=True,condition__onBuilt=True,pbl_classes=True)
             
     def dettagli(self,pane):
         #leftdett = pane.roundedGroup(title='!![en]Proforma details', height='auto')

@@ -147,12 +147,15 @@ class Form(BaseComponent):
 
     @public_method
     def riepilogoEconomicoLazyMode(self,pane):
-            pane.inlineTableHandler(relation='@servizi_economici',viewResource='ViewDashboard',pbl_classes=True,
+            pane.inlineTableHandler(table='quotazioni.quotazione_servizio',
+                                    default_quotazione_id='=#FORM/parent/#FORM.record.id',
+                                    condition_onStart=True,viewResource='ViewDashboard',pbl_classes=True,
                                     view_store__onBuilt=True,addrow=False,delrow=False)
    
     @public_method
     def quotServLazyMode(self, pane):
-        pane.stackTableHandler(relation='@servizi_economici',viewResource='View',view_store__onBuilt=True)
+        pane.stackTableHandler(table='quotazioni.quotazione_servizio',default_quotazione_id='=#FORM/parent/#FORM.record.id',
+        condition_onStart=True,viewResource='View',view_store__onBuilt=True)
 
     @public_method
     def quotServStorLazyMode(self, pane):
@@ -1020,7 +1023,8 @@ class Form(BaseComponent):
             fired=True)
 
     def th_options(self):
-        return dict(dialog_height='400px', dialog_width='600px', defaultPrompt=dict(title='!![en]Quotation date', fields=self.newRecParameters()))
+        return dict(dialog_windowRatio = 1, annotations= True, defaultPrompt=dict(title='!![en]Quotation date', fields=self.newRecParameters()))
+        #return dict(dialog_height='400px', dialog_width='600px', defaultPrompt=dict(title='!![en]Quotation date', fields=self.newRecParameters()))
 
     def newRecParameters(self):
         return [dict(value='^.data', lbl='!![en]Quotation date',

@@ -30,7 +30,13 @@ class View(BaseComponent):
 class Form(BaseComponent):
 
     def th_form(self, form):
-        pane = form.record
+        #pane = form.record
+        bc = form.center.borderContainer()
+        self.cliente(bc.roundedGroupFrame(title='!![en]Customer',region='top',datapath='.record',height='210px', splitter=True))
+        tc = bc.tabContainer(margin='2px',region='center')
+        self.quotazioni(tc.contentPane(title='!![en]Quotations'))
+
+    def cliente(self,pane):
         fb = pane.formbuilder(cols=2, border_spacing='4px',fld_width='50em')
         fb.field('rag_sociale' )
         fb.field('address' )
@@ -41,6 +47,9 @@ class Form(BaseComponent):
         fb.field('tel' )
         fb.field('note', tag='simpleTextArea' , colspan=2, width='99%')
 
+    def quotazioni(self,pane):
+        pane.dialogTableHandler(relation='@cliente_quot',
+                                viewResource='View',extendedQuery=True,pbl_classes=True)
 
     def th_options(self):
         return dict(dialog_height='400px', dialog_width='600px' )

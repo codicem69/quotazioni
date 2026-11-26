@@ -16,6 +16,8 @@ class Menu(object):
             quotation.thpage(u"!!Cliente", table="quotazioni.cliente")
             quotation.thpage(u"!!Quotazione", table="quotazioni.quotazione")
             quotation.thpage(u"!!Quotazione versione", table="quotazioni.quotazione_versione")
+            quotation.thpage(u"!!Quotazione servizio", table="quotazioni.quotazione_servizio")
+            quotation.thpage(u"!!Quotazione servizio storico", table="quotazioni.quotazione_servizio_storico")
             quotation.thpage(u"!!Description", table="quotazioni.description")
             quotation.thpage(u"!!Details", table="quotazioni.extracost")
             quotation.thpage(u"!!Services included", table="quotazioni.services_incl")

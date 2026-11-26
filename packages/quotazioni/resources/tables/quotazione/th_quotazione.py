@@ -39,14 +39,21 @@ class Form(BaseComponent):
     #py_requires='gnrcomponents/pagededitor/pagededitor:PagedEditor,quotationattachmanager:QuotationAttachManager'
     def th_form(self, form):
         form.store.handler('load',virtual_columns='$quot_corrispondenza_id')
-        tc = form.center.tabContainer()
+        tc = form.center.tabContainer(selectedPage='^tabname')
         bc = tc.borderContainer(title='!![en]Quotation')
         bc_att = tc.borderContainer(title='!![en]<strong>Corrispondence</strong>')
        # bc_att.borderContainer(region='center',height='auto', background = '#f2f0e8', splitter=True).contentPane(title='!![en]Quotation Received',pageName='quot_rec',height='100%').remote(self.quot_recLazyMode,_waitingMessage='!![en]Please wait')
         self.corrispondenza(bc_att.contentPane(title='!![en]Corrispondence',pageName='corrispondence',height='100%'))
-        self.datiQuotazione(bc.borderContainer(region='top',datapath='.record',height='130px', splitter=True))
+        bc_econ = tc.borderContainer(title='!![en]<strong>Economic Situation</strong>', pageName='SituazioneEconomica')
+        self.datiQuotazioneServ(bc_econ.borderContainer(region='top',datapath='.record',height='160px', splitter=True))
+        econ_bottom = bc_econ.borderContainer(region='center', height='auto', width='100%')
+        
+        self.situazioneEconomica(econ_bottom)#.borderContainer(region='center',height='100%',width='100%', padding='2px'))
+        self.datiQuotazione(bc.borderContainer(region='top',datapath='.record',height='160px', splitter=True))
         tc_v = bc.borderContainer(region='center', splitter=True).tabContainer(title='Versione',region='center')
         self.datiVersione(tc_v.contentPane(title='!![en]Quotation version',height='100%', padding='2px'))
+        tc_v.contentPane(title='!![en]Quotation service',height='auto', padding='2px').remote(self.quotServLazyMode,_waitingMessage='!![en]Please wait')
+        tc_v.contentPane(title='!![en]Historical service quotes',height='auto', padding='2px').remote(self.quotServStorLazyMode,_waitingMessage='!![en]Please wait')
         #self.editQuotation(tc_v.framePane(title='!![EN]Edit PDF Quotation', datapath='#FORM.editPagine'))
         #self.datiVersione(bc.borderContainer(region='center', splitter=True).contentPane(title='!![en]Quotation version',height='100%', padding='2px'))
         
@@ -70,9 +77,39 @@ class Form(BaseComponent):
         self.allegatiQuotazione(tc_right.contentPane(title='!![en]Attachments', height='100%'))
         #self.editQuotation(tc_right.framePane(title='!![EN]Edit PDF Quotation', datapath='#FORM.editPagine'))
     
-   #@public_method
-   #def quot_recLazyMode(self,pane):    
-   #    pane.stackTableHandler(relation='@quot_ricevuta',view_store__onBuilt=True,liveUpdate=True)
+    def datiQuotazione(self,bc):
+            bc.contentPane(region='center').linkerBox('cliente_id',margin='2px',openIfEmpty=True, validate_notnull=True,
+                                                        columns='$rag_sociale,$address,$cap,$city,$email',
+                                                        auxColumns='$tel',
+                                                    #    clientTemplate=True,
+                                                        newRecordOnly=True,formResource='Form',dialog_windowRatio = 1)
+                                                        #dialog_height='500px',dialog_width='800px')
+            left = bc.roundedGroup(title='!![en]Quotation datas',region='left',width='45%')
+            fb = left.formbuilder(cols=3, border_spacing='4px', width='90%')
+            #fb = pane.div(margin_left='50px',margin_right='80px').formbuilder(cols=4, border_spacing='4px',fld_width='10em')
+            
+            fb.field('data' )
+            fb.field('quot_n', readOnly=True, width='100%')
+            fb.br()
+            fb.field('oggetto', colspan=3, width='98%',height='100%', tag='simpleTextArea' )
+            fb.field('quotazione_madre_id', hasDownArrow=True, width='98%', colspan=3)
+
+    def datiQuotazioneServ(self,bc):
+                bc.contentPane(region='center').linkerBox('cliente_id',margin='2px', editEnabled=False,addEnabled=False,
+                                                            columns='$rag_sociale,$address,$cap,$city,$email',
+                                                            auxColumns='$tel',
+                                                        #    clientTemplate=True,
+                                                            formResource='Form',dialog_windowRatio = 1)
+                                                            #dialog_height='500px',dialog_width='800px')
+                left = bc.roundedGroup(title='!![en]Quotation datas',region='left',width='45%')
+                fb = left.formbuilder(cols=3, border_spacing='4px', width='90%')
+                #fb = pane.div(margin_left='50px',margin_right='80px').formbuilder(cols=4, border_spacing='4px',fld_width='10em')
+                
+                fb.field('data', readOnly=True )
+                fb.field('quot_n', readOnly=True, width='100%')
+                fb.br()
+                fb.field('oggetto', colspan=3, width='98%',height='100%', tag='simpleTextArea' , readOnly=True)
+               
     def datiVersione(self,pane):
         #pane.div('test')
         pane.stackTableHandler(relation='@quot_vers',viewResource='View')
@@ -84,7 +121,35 @@ class Form(BaseComponent):
         pane.stackTableHandler(table='quotazioni.corrispondenza',viewResource='View',
                                default_quotazione_id='=#FORM/parent/#FORM.record.quot_corrispondenza_id',                             
                                condition_onStart=True)
+    
+    def situazioneEconomica(self, pane):
+        #top = pane.contentPane(region='top',height='150px',padding='10px')
+
+        center = pane.contentPane(region='center',padding='5px')
+
         
+        self.riepilogoEconomico(center)
+
+
+
+    def riepilogoEconomico(self, pane):
+        pane.remote(self.riepilogoEconomicoLazyMode,_waitingMessage='!![en]Calculating economic summary...')
+
+    @public_method
+    def riepilogoEconomicoLazyMode(self,pane):
+            pane.inlineTableHandler(relation='@servizi_economici',viewResource='ViewDashboard',pbl_classes=True,
+                                    view_store__onBuilt=True,addrow=False,delrow=False)
+   
+    @public_method
+    def quotServLazyMode(self, pane):
+        pane.stackTableHandler(relation='@servizi_economici',viewResource='View',view_store__onBuilt=True)
+
+    @public_method
+    def quotServStorLazyMode(self, pane):
+        pane.stackTableHandler(table='quotazioni.quotazione_servizio_storico',viewResource='View',view_store__onBuilt=True,
+                                default_quotazione_id='=#FORM/parent/#FORM.record.quotazione_servizio_id',                             
+                                       condition_onStart=True)
+            
     def dettagli(self,pane):
         #leftdett = pane.roundedGroup(title='!![en]Proforma details', height='auto')
         #fb = leftdett.formbuilder(cols=1, border_spacing='4px',margin='4px')
@@ -721,49 +786,6 @@ class Form(BaseComponent):
                 'error': str(e),
                 'fileurl': fileurl
             }
-    
-    def datiQuotazione(self,bc):
-        bc.contentPane(region='center').linkerBox('cliente_id',margin='2px',openIfEmpty=True, validate_notnull=True,
-                                                    columns='$rag_sociale,$address,$cap,$city,$email',
-                                                    auxColumns='$tel',
-                                                #    clientTemplate=True,
-                                                    newRecordOnly=True,formResource='Form',dialog_windowRatio = 1)
-                                                    #dialog_height='500px',dialog_width='800px')
-        left = bc.roundedGroup(title='!![en]Quotation datas',region='left',width='45%')
-        fb = left.formbuilder(cols=3, border_spacing='4px', width='90%')
-        #fb = pane.div(margin_left='50px',margin_right='80px').formbuilder(cols=4, border_spacing='4px',fld_width='10em')
-        
-        fb.field('data' )
-        fb.field('quot_n', readOnly=True, width='100%')
-        fb.br()
-        fb.field('oggetto', colspan=3, width='98%',height='100%', tag='simpleTextArea' )
-        fb.field('quotazione_madre_id', hasDownArrow=True, width='98%', colspan=3)
-        
-        #fb.field('firma')
-        
-        #fb.field('cliente_id' )
-    #def th_bottom_custom(self, bottom):
-    #    bar = bottom.slotBar('10,stampa_quotazione,5,email_quotazione,5,stampa_quot_template,5,quotazione_doc,*,10')
-    #    btn_quot_print=bar.stampa_quotazione.button('!![en]Print quotation',
-    #                                                action="""genro.publish("table_script_run",{table:"quotazioni.quotazione",
-    #                                                                           res_type:'print',
-    #                                                                           resource:'stampa_quotazione',
-    #                                                                           pkey: pkey})
-    #                                                                           """,
-    #                                                                           pkey='=#FORM.pkey')
-    #    bar.email_quotazione.button('!![en]Email quotation', iconClass='print',
-    #                                    action="""genro.publish("table_script_run",{table:"quotazioni.quotazione",
-    #                                                                               res_type:'print',
-    #                                                                               resource:'email_quotazione',
-    #                                                                               pkey: pkey})""",
-    #                                                                               pkey='=#FORM.pkey')
-#
-    #    btn_quot_print=bar.stampa_quot_template.button('!![en]Print quotation template')
-    #    btn_quot = bar.quotazione_doc.button('!![en]Quotanion doc.')
-    #    btn_quot_print.dataRpc('nome_temp', self.print_quotation,record='=#FORM.record',nome_template = 'quotazioni.quotazione:quotation',format_page='A4')
-    #    btn_quot.dataRpc('nome_temp', self.print_quotation_docx,record='=#FORM.record',nome_form='quotazione',agency_name='=#FORM.record.@agency_id.agency_name',
-    #                     workport='=#FORM.record.@agency_id.@port.descrizione',_virtual_column='$cliente,$cliente_br')
-
 
     def editQuotation(self, frame):
         bar = frame.top.slotBar('10, lett_select,*',height='20px',border_bottom='1px solid silver')
@@ -988,4 +1010,8 @@ class Form(BaseComponent):
             fired=True)
 
     def th_options(self):
-        return dict(dialog_height='400px', dialog_width='600px' )
+        return dict(dialog_height='400px', dialog_width='600px', defaultPrompt=dict(title='!![en]Quotation date', fields=self.newRecParameters()))
+
+    def newRecParameters(self):
+        return [dict(value='^.data', lbl='!![en]Quotation date',
+                    validate_notnull=True, tag='dateTextBox',hasDownArrow=True)]

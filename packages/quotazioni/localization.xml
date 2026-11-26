@@ -2,6 +2,8 @@
 <GenRoBag><menu path="menu.py" ext="py"><en_cliente base="Cliente"></en_cliente>
 <en_quotazione base="Quotazione"></en_quotazione>
 <en_quotazione_versione base="Quotazione versione"></en_quotazione_versione>
+<en_quotazione_servizio base="Quotazione servizio"></en_quotazione_servizio>
+<en_quotazione_servizio_storico base="Quotazione servizio storico"></en_quotazione_servizio_storico>
 <en_description base="Description" en="Description" it="Descrizione"></en_description>
 <en_details base="Details" it="Dettagli"></en_details>
 <en_services_included base="Services included" it="Servizi inclusi"></en_services_included>
@@ -54,14 +56,37 @@
 <en_signature base="Signature" it="Firma"></en_signature>
 <en_sign base="Sign"></en_sign>
 <en_customer base="Customer" it="Cliente"></en_customer>
+<en_parent_quotation base="Parent Quotation"></en_parent_quotation>
 <en_current_version base="Current version"></en_current_version>
 <en_body_first base="Body first"></en_body_first>
 <en_html_quotation_doc base="Html quotation doc"></en_html_quotation_doc>
 <en_privacy_email base="Privacy email"></en_privacy_email>
 <en_greeting base="Greeting"></en_greeting></quotazione>
-<quotazione_versione path="model/quotazione_versione.py" ext="py"><en_quotation_version base="Quotation version"></en_quotation_version>
+<quotazione_servizio path="model/quotazione_servizio.py" ext="py"><en_economic_service base="Economic service"></en_economic_service>
+<en_economic_services base="Economic services"></en_economic_services>
+<en_quotation base="Quotation" it="Quotazione"></en_quotation>
+<en_source_version base="Source version"></en_source_version>
+<en_source_table base="Source table"></en_source_table>
+<en_source_record base="Source record"></en_source_record>
+<en_description base="Description" en="Description" it="Descrizione"></en_description>
+<en_unit_of_measure base="Unit of measure" it="Unità di misura"></en_unit_of_measure>
+<en_price_type base="Price type" it="Tipo costo"></en_price_type>
+<en_customer_unit_price base="Customer unit price" it="Prezzo unitario cliente"></en_customer_unit_price>
+<en_supplier_unit_cost base="Supplier unit cost" it="Costo fornitore unitario"></en_supplier_unit_cost>
+<en_notes fr="Remarques" de="Aufzeichnungen" en="Notes" it="Note" base="Notes"></en_notes></quotazione_servizio>
+<quotazione_servizio_storico path="model/quotazione_servizio_storico.py" ext="py"><en_economic_service_history base="Economic service history"></en_economic_service_history>
+<en_economic_service base="Economic service"></en_economic_service>
+<en_modified_field base="Modified field" it="Campo modificato"></en_modified_field>
+<en_previous_value base="Previous value" it="Valore precedente"></en_previous_value>
+<en_new_value base="New value" it="Nuovo valore"></en_new_value>
+<en_modification_date base="Modification date"></en_modification_date>
+<en_modified_by base="Modified by" it="Modificato da"></en_modified_by>
+<en_update_origin base="Update origin"></en_update_origin>
+<en_reason base="Reason" en="Reason" it="Motivo"></en_reason></quotazione_servizio_storico>
+<quotazione_versione path="model/quotazione_versione.py" ext="py"><en_quotation_version base="Quotation version" it="Versione quotazione"></en_quotation_version>
 <en_quotation_versions base="Quotation versions"></en_quotation_versions>
 <en_quotation base="Quotation" it="Quotazione"></en_quotation>
+<en_version_number base="Version number"></en_version_number>
 <en_version fr="Version" de="Version" en="Version" it="Versione" base="Version"></en_version>
 <en_date fr="Date" de="Datum" en="Date" it="Data" base="Date"></en_date>
 <en_subject fr="Sujet" de="Gegenstand" en="Subject" it="Oggetto" base="Subject"></en_subject>
@@ -96,11 +121,14 @@
 <corrispondenza><th_corrispondenza path="resources/tables/corrispondenza/th_corrispondenza.py" ext="py"><en_quotation_received_description base="Quotation received description"></en_quotation_received_description>
 <en_attachments base="Attachments" de="Zubehör" en="Attachments" fr="Pièces jointes" it="Allegati"></en_attachments></th_corrispondenza></corrispondenza>
 <quotazione><th_quotazione path="resources/tables/quotazione/th_quotazione.py" ext="py"><en_quotation base="Quotation" it="Quotazione"></en_quotation>
-<en_strong_corrispondence_strong_ _tag="en__strong_corrispondence_strong_" base="&lt;strong&gt;Corrispondence&lt;/strong&gt;"></en_strong_corrispondence_strong_>
+<en_strong_corrispondence_strong_ _tag="en__strong_corrispondence_strong_" base="&lt;strong&gt;Corrispondence&lt;/strong&gt;" it="Corrispondenza"></en_strong_corrispondence_strong_>
 <en_quotation_received base="Quotation Received" it="Quotazione ricevuta"></en_quotation_received>
 <en_please_wait base="Please wait"></en_please_wait>
 <en_corrispondence base="Corrispondence" it="Corrispondenza"></en_corrispondence>
-<en_quotation_version base="Quotation version"></en_quotation_version>
+<en_strong_economic_situation_strong_ _tag="en__strong_economic_situation_strong_" base="&lt;strong&gt;Economic Situation&lt;/strong&gt;" it="Situazione Economica"></en_strong_economic_situation_strong_>
+<en_quotation_version base="Quotation version" it="Versione quotazione"></en_quotation_version>
+<en_quotation_service base="Quotation service" it="Quotazione servizio"></en_quotation_service>
+<en_historical_service_quotes base="Historical service quotes" it="Storico costi servizi"></en_historical_service_quotes>
 <EN_edit_pdf_quotation base="Edit PDF Quotation" it="Modifica PDF Quotazione"></EN_edit_pdf_quotation>
 <en_first_description base="First description" it="Prima descrizione"></en_first_description>
 <en_costs base="Costs" it="Costi"></en_costs>
@@ -113,17 +141,16 @@
 <en_notes fr="Remarques" de="Aufzeichnungen" en="Notes" it="Note" base="Notes"></en_notes>
 <en_payment_conditions base="Payment conditions" it="Condizioni di pagamento"></en_payment_conditions>
 <en_attachments base="Attachments" de="Zubehör" en="Attachments" fr="Pièces jointes" it="Allegati"></en_attachments>
-<en_proforma_details base="Proforma details"></en_proforma_details>
 <en_quotation_datas base="Quotation datas" it="Dati quotazione"></en_quotation_datas>
-<en_print_quotation base="Print quotation"></en_print_quotation>
-<en_email_quotation base="Email quotation"></en_email_quotation>
-<en_print_quotation_template base="Print quotation template"></en_print_quotation_template>
-<en_quotanion_doc_ base="Quotanion doc."></en_quotanion_doc_></th_quotazione>
+<en_calculating_economic_summary_ base="Calculating economic summary..."></en_calculating_economic_summary_>
+<en_proforma_details base="Proforma details" it="Dettagli proforma"></en_proforma_details></th_quotazione>
 <th_quotazione_back path="resources/tables/quotazione/th_quotazione_back.py" ext="py"><en_quotation base="Quotation" it="Quotazione"></en_quotation>
-<en_strong_quotation_received_strong_ _tag="en__strong_quotation_received_strong_" base="&lt;strong&gt;Quotation received&lt;/strong&gt;" it="Quotazione ricevuta"></en_strong_quotation_received_strong_>
+<en_strong_corrispondence_strong_ _tag="en__strong_corrispondence_strong_" base="&lt;strong&gt;Corrispondence&lt;/strong&gt;" it="Corrispondenza"></en_strong_corrispondence_strong_>
 <en_quotation_received base="Quotation Received" it="Quotazione ricevuta"></en_quotation_received>
 <en_please_wait base="Please wait"></en_please_wait>
-<en_proforma base="Proforma"></en_proforma>
+<en_corrispondence base="Corrispondence" it="Corrispondenza"></en_corrispondence>
+<en_quotation_version base="Quotation version" it="Versione quotazione"></en_quotation_version>
+<EN_edit_pdf_quotation base="Edit PDF Quotation" it="Modifica PDF Quotazione"></EN_edit_pdf_quotation>
 <en_first_description base="First description" it="Prima descrizione"></en_first_description>
 <en_costs base="Costs" it="Costi"></en_costs>
 <en_extra_details base="Extra details" it="Dettagli extra"></en_extra_details>
@@ -135,25 +162,38 @@
 <en_notes fr="Remarques" de="Aufzeichnungen" en="Notes" it="Note" base="Notes"></en_notes>
 <en_payment_conditions base="Payment conditions" it="Condizioni di pagamento"></en_payment_conditions>
 <en_attachments base="Attachments" de="Zubehör" en="Attachments" fr="Pièces jointes" it="Allegati"></en_attachments>
-<EN_edit_pdf_quotation base="Edit PDF Quotation" it="Modifica PDF Quotazione"></EN_edit_pdf_quotation>
-<en_proforma_details base="Proforma details"></en_proforma_details>
+<en_proforma_details base="Proforma details" it="Dettagli proforma"></en_proforma_details>
 <en_quotation_datas base="Quotation datas" it="Dati quotazione"></en_quotation_datas>
 <en_print_quotation base="Print quotation"></en_print_quotation>
 <en_email_quotation base="Email quotation"></en_email_quotation>
 <en_print_quotation_template base="Print quotation template"></en_print_quotation_template>
 <en_quotanion_doc_ base="Quotanion doc."></en_quotanion_doc_></th_quotazione_back></quotazione>
-<quotazione_versione><th_quotazione_versione path="resources/tables/quotazione_versione/th_quotazione_versione.py" ext="py"><en_quotation_version base="Quotation Version"></en_quotation_version>
+<quotazione_servizio><th_quotazione_servizio path="resources/tables/quotazione_servizio/th_quotazione_servizio.py" ext="py"><en_service base="Service" en="Service" it="Servizio"></en_service>
+<en_u_m_ base="U.M."></en_u_m_>
+<en_customer_price base="Customer price" it="Prezzo cliente"></en_customer_price>
+<en_supplier_cost base="Supplier cost" it="Costi fornitore"></en_supplier_cost>
+<en_margin base="Margin"></en_margin>
+<en_margin_ base="Margin %"></en_margin_>
+<en_customer_forfait_total base="Customer forfait total" it="Totali forfait cliente"></en_customer_forfait_total>
+<en_supplier_forfait_total base="Supplier forfait total" it="Totale forfait fornitore"></en_supplier_forfait_total>
+<en_forfait_margin base="Forfait margin" it="Margine forfait"></en_forfait_margin></th_quotazione_servizio></quotazione_servizio>
+<quotazione_versione><th_quotazione_versione path="resources/tables/quotazione_versione/th_quotazione_versione.py" ext="py"><en_quotation_version base="Quotation Version" it="Versione quotazione"></en_quotation_version>
 <en_first_description base="First description" it="Prima descrizione"></en_first_description>
 <en_costs base="Costs" it="Costi"></en_costs>
 <en_extra_details base="Extra details" it="Dettagli extra"></en_extra_details>
 <en_services_included base="Services included" it="Servizi inclusi"></en_services_included>
-<en_surcharges base="Surcharges" it="Maggiorazioni"></en_surcharges>
+<en_notes fr="Remarques" de="Aufzeichnungen" en="Notes" it="Note" base="Notes"></en_notes>
 <en_specific_conditions base="Specific conditions" it="Condizioni specifiche"></en_specific_conditions>
 <en_services_excluded base="Services excluded" it="Servizi esclusi"></en_services_excluded>
+<en_surcharges base="Surcharges" it="Maggiorazioni"></en_surcharges>
 <en_working_times base="Working times" it="Orari di lavoro"></en_working_times>
-<en_notes fr="Remarques" de="Aufzeichnungen" en="Notes" it="Note" base="Notes"></en_notes>
 <en_payment_conditions base="Payment conditions" it="Condizioni di pagamento"></en_payment_conditions>
 <EN_edit_pdf_quotation base="Edit PDF Quotation" it="Modifica PDF Quotazione"></EN_edit_pdf_quotation>
-<en_email_quotation base="Email quotation"></en_email_quotation>
+<en_email_quotation base="Email Quotation"></en_email_quotation>
+<en_select_the_attachments base="Select the attachments"></en_select_the_attachments>
+<en_attachments base="Attachments" de="Zubehör" en="Attachments" fr="Pièces jointes" it="Allegati"></en_attachments>
+<en_english_message base="English message"></en_english_message>
 <en_print_quotation_template base="Print quotation template"></en_print_quotation_template>
-<en_quotanion_doc_ base="Quotanion doc."></en_quotanion_doc_></th_quotazione_versione></quotazione_versione></tables></resources></GenRoBag>
+<en_quotanion_doc_ base="Quotanion doc."></en_quotanion_doc_>
+<en_warning base="Warning" de="Warnung" en="Warning" fr="Avertissement" it="Avvertimento"></en_warning>
+<en_strong_pdf_gi_modificato_in_modifica_pdf_quotazione_la_stampa_comunque_sovrascrive_il_file_pdf_salvato_precdentemente_strong_br_br_ _tag="en__strong_pdf_già_modificato_in_modifica_pdf_quotazione_la_stampa_comunque_sovrascrive_il_file_pdf_salvato_precdentemente_strong_br_br_" base="&lt;strong&gt;PDF già modificato in Modifica PDF Quotazione. La stampa comunque sovrascrive il file pdf salvato precdentemente.&lt;/strong&gt;&lt;br&gt;&lt;br&gt;"></en_strong_pdf_gi_modificato_in_modifica_pdf_quotazione_la_stampa_comunque_sovrascrive_il_file_pdf_salvato_precdentemente_strong_br_br_></th_quotazione_versione></quotazione_versione></tables></resources></GenRoBag>

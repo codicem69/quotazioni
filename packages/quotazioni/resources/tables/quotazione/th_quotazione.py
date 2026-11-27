@@ -222,7 +222,7 @@ class Form(BaseComponent):
     def quotationAttachmentGrid(self, pane):
 
         bc = pane.borderContainer(design='sidebar')
-
+            
         # ============================================================
         # GRIGLIA ALLEGATI
         # ============================================================
@@ -303,6 +303,31 @@ class Form(BaseComponent):
             overflow='auto',
             padding='15px'
         )
+        printbar = emlpage.div(
+            hidden='=!^.is_eml',
+            height='35px',
+            margin_bottom='10px'
+        )
+        
+        printbar.button(
+            'Stampa email',
+            iconClass='icon-printer',
+            action='PUBLISH print_email'
+        )
+        viewerpage.dataRpc(
+            '.email_pdf',
+            self.emailToPdf,
+            fileurl='=.eml_fileurl',
+            subscribe_print_email=True,
+            _onResult="""
+                console.log('>>> RISULTATO EMAIL PDF:', result);
+                if(result && result.url){
+                    window.open(result.url, '_blank');
+                } else {
+                    console.log('>>> RISULTATO VUOTO O ERRORE:', result);
+                }
+            """
+            )
 
         emlpage.div('^.eml.subject', font_size='18px', font_weight='bold', margin_bottom='15px')
         emlpage.div('^.eml.from', margin_bottom='5px')
@@ -350,7 +375,7 @@ class Form(BaseComponent):
         #    SET .reader_url = '';
         #    SET .reader_mode = 'viewer';
         #""")
-#
+    
          # ============================================================
         # SELEZIONE FILE
         # ============================================================
@@ -374,7 +399,7 @@ class Form(BaseComponent):
                 SET .is_eml = false;
                 SET .reader_mode = 'viewer';
                 SET .reader_url = fileurl;
-                SET .eml = null;
+                
             }
             """,
             fileurl='^.attachments.view.grid.selectedId?fileurl',

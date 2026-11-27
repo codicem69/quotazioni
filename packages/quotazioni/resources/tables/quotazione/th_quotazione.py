@@ -131,7 +131,7 @@ class Form(BaseComponent):
         pane.stackTableHandler(table='quotazioni.corrispondenza',viewResource='View',
                                default_quotazione_id='=#FORM/parent/#FORM.record.id',                             
                                condition='$quotazione_id=:quotazione_id',
-                               condition_quotazione_id='^#FORM/parent/#FORM.record.id',
+                               condition_quotazione_id='^#FORM.record.id',
                                condition_onStart=True,condition__onBuilt=True,view_store__onBuilt=True,pbl_classes=True)
     
     def situazioneEconomica(self, pane):
@@ -152,7 +152,7 @@ class Form(BaseComponent):
             pane.inlineTableHandler(table='quotazioni.quotazione_servizio',
                                     default_quotazione_id='=#FORM/parent/#FORM.record.id',
                                     condition='$quotazione_id=:quotazione_id',
-                                    condition_quotazione_id='^#FORM/parent/#FORM.record.id',
+                                    condition_quotazione_id='^#FORM.record.id',
                                     condition_onStart=True,viewResource='ViewDashboard',pbl_classes=True,condition__onBuilt=True,
                                     view_store__onBuilt=True,addrow=False,delrow=False)
    
@@ -160,7 +160,7 @@ class Form(BaseComponent):
     def quotServLazyMode(self, pane):
         pane.stackTableHandler(table='quotazioni.quotazione_servizio',default_quotazione_id='=#FORM/parent/#FORM.record.id',
                                condition='$quotazione_id=:quotazione_id',
-                               condition_quotazione_id='^#FORM/parent/#FORM.record.id',
+                               condition_quotazione_id='^#FORM.record.id',
                                condition_onStart=True,condition__onBuilt=True,viewResource='View',view_store__onBuilt=True,pbl_classes=True)
 
     @public_method
@@ -171,7 +171,7 @@ class Form(BaseComponent):
                                                SELECT id
                                                FROM quotazioni.quotazioni_quotazione_servizio
                                                WHERE quotazione_id = :quotazione_id)""",
-                                condition_quotazione_id='^#FORM/parent/#FORM.record.id',                          
+                                condition_quotazione_id='^#FORM.record.id',                          
                                 condition_onStart=True,condition__onBuilt=True,pbl_classes=True)
             
     def dettagli(self,pane):
